@@ -201,16 +201,61 @@
   <div class="mobile-donate-bar"><button class="button button-primary button-wide js-donate" type="button">Donate now</button></div>
 
   <dialog class="donate-dialog" id="donate-dialog" aria-labelledby="donate-title">
-    <button class="dialog-close" type="button" aria-label="Close donation options">×</button>
-    <div class="dialog-head"><p class="eyebrow">Direct support</p><h2 id="donate-title">Choose how you’d like to help</h2><p>Every option below sends your gift directly to the campaign organizer.</p></div>
+    <button class="dialog-close" id="donate-close" type="button" aria-label="Close donation options">×</button>
+    <div class="dialog-head"><p class="eyebrow">Every kind of help matters</p><h2 id="donate-title">Choose how you’d like to help</h2><p>Give money, send something needed, or offer your time and care directly to our family.</p></div>
+    <div class="giving-heading"><span>01</span><div><strong>Give money</strong><small>Choose an amount and the direct payment service that works for you.</small></div></div>
     <div class="amount-picker">
       <label for="donation-amount">Gift amount</label>
       <div class="amount-input"><span>$</span><input id="donation-amount" inputmode="decimal" type="number" min="1" step="1" placeholder="50"><span>USD</span></div>
       <div class="amount-chips"><button data-set-amount="25" type="button">$25</button><button data-set-amount="50" type="button">$50</button><button data-set-amount="100" type="button">$100</button><button data-set-amount="250" type="button">$250</button></div>
     </div>
     <div class="payment-grid" id="payment-options"></div>
+    <div class="giving-heading giving-heading-secondary"><span>02</span><div><strong>Give another way</strong><small>Essentials, practical help, and human support can be just as valuable.</small></div></div>
+    <div class="support-grid" id="support-options"></div>
     <div class="payment-safety"><strong>Before you send</strong><p>Confirm the recipient name shown by your payment service. Never send passwords, verification codes, or login details. For bank instructions, contact the organizer using the verified email on this page.</p></div>
-    <p class="legal-note">This is a personal fundraiser, not a registered charity. Contributions are gifts and are generally not tax-deductible. Payment-provider fees and protections vary.</p>
+    <p class="legal-note">Cash progress and estimated in-kind support are tracked separately. This is a personal fundraiser, not a registered charity. Contributions are gifts and are generally not tax-deductible. Payment-provider fees and protections vary.</p>
+  </dialog>
+
+  <dialog class="support-dialog" id="support-dialog" aria-labelledby="support-title">
+    <button class="dialog-close" id="support-close" type="button" aria-label="Close support form">×</button>
+    <div class="dialog-head"><p class="eyebrow">Offer practical support</p><h2 id="support-title">Tell us how you’d like to help</h2><p>We’ll prepare a private message you can send directly to Gemma and Sascha.</p></div>
+    <form class="support-form" id="support-form">
+      <div class="form-field">
+        <label for="support-type">Type of support</label>
+        <select id="support-type" required>
+          <option value="Gift card">Gift card</option>
+          <option value="Goods or supplies">Goods or supplies</option>
+          <option value="Prayer and encouragement">Prayer and encouragement</option>
+          <option value="Time or skills">Time or skills</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Other support">Other support</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="support-estimate">Estimated value <span>optional</span></label>
+        <div class="amount-input compact"><span>$</span><input id="support-estimate" inputmode="decimal" type="number" min="0" step="1" placeholder="0"><span>USD</span></div>
+        <small>For goods, gift cards, transportation, or professional time. An honest estimate is enough.</small>
+      </div>
+      <div class="form-field">
+        <label for="support-description">What would you like to offer?</label>
+        <textarea id="support-description" required placeholder="Tell us what you can provide, when it may be available, and any limits we should know about."></textarea>
+      </div>
+      <div class="form-grid">
+        <div class="form-field"><label for="support-name">Your name</label><input id="support-name" type="text" autocomplete="name" placeholder="Name"></div>
+        <div class="form-field"><label for="support-email">Reply email</label><input id="support-email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+      </div>
+      <div class="form-field">
+        <label for="support-recognition">Public recognition preference</label>
+        <select id="support-recognition">
+          <option value="Keep my offer private">Keep my offer private</option>
+          <option value="Ask me before publishing anything">Ask me before publishing anything</option>
+          <option value="Anonymous acknowledgment is okay">Anonymous acknowledgment is okay</option>
+          <option value="First name and last initial are okay">First name and last initial are okay</option>
+        </select>
+      </div>
+      <button class="button button-primary button-wide" type="submit">Prepare private message</button>
+      <p class="form-note">Submitting opens your email application. Nothing is posted publicly or written directly into our private support ledger.</p>
+    </form>
   </dialog>
 
   <div class="toast" role="status" aria-live="polite"></div>

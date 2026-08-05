@@ -146,12 +146,19 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 .footer-links { display: flex; gap: 24px; align-items: start; }
 .mobile-donate-bar { display: none; }
 
-.donate-dialog { width: min(760px, calc(100% - 32px)); max-height: min(860px, calc(100vh - 32px)); padding: 0; overflow: auto; border: 0; border-radius: 22px; color: var(--ink); background: var(--paper); box-shadow: 0 28px 90px rgba(0,0,0,.3); }
-.donate-dialog::backdrop { background: rgba(27,29,27,.63); backdrop-filter: blur(4px); }
+.donate-dialog, .support-dialog { width: min(760px, calc(100% - 32px)); max-height: min(860px, calc(100vh - 32px)); padding: 0; overflow: auto; border: 0; border-radius: 22px; color: var(--ink); background: var(--paper); box-shadow: 0 28px 90px rgba(0,0,0,.3); }
+.support-dialog { width: min(640px, calc(100% - 32px)); }
+.donate-dialog::backdrop, .support-dialog::backdrop { background: rgba(27,29,27,.63); backdrop-filter: blur(4px); }
 .dialog-close { position: sticky; z-index: 2; float: right; top: 16px; margin: 16px 16px 0 0; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; background: var(--white); cursor: pointer; font-size: 24px; line-height: 1; }
 .dialog-head { padding: 42px 44px 25px; background: var(--green-soft); }
 .dialog-head h2 { max-width: 550px; margin-bottom: 8px; font-size: 38px; }
 .dialog-head > p:last-child { margin: 0; color: var(--muted); }
+.giving-heading { padding: 27px 44px 0; display: flex; align-items: center; gap: 13px; }
+.giving-heading > span { width: 31px; height: 31px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 10px; font-weight: 800; }
+.giving-heading strong, .giving-heading small { display: block; }
+.giving-heading strong { font-size: 15px; }
+.giving-heading small { margin-top: 2px; color: var(--muted); font-size: 11px; }
+.giving-heading-secondary { padding-top: 25px; border-top: 1px solid var(--line); }
 .amount-picker { padding: 28px 44px 20px; }
 .amount-picker label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 700; }
 .amount-input { display: flex; align-items: center; gap: 10px; padding: 0 14px; border: 1px solid #aaa99f; border-radius: 11px; background: var(--white); }
@@ -160,16 +167,31 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 .amount-input span:last-child { color: var(--muted); font-size: 12px; font-weight: 700; }
 .amount-chips { display: flex; gap: 8px; margin-top: 10px; }
 .amount-chips button { flex: 1; }
-.payment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 44px 28px; }
+.payment-grid, .support-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 44px 28px; }
+.support-grid { padding-top: 20px; }
 .payment-option { position: relative; min-height: 82px; padding: 15px; display: flex; align-items: center; gap: 13px; text-align: left; border: 1px solid var(--line); border-radius: 13px; color: inherit; background: var(--white); cursor: pointer; text-decoration: none; }
 .payment-option:hover { border-color: var(--green); box-shadow: 0 6px 18px rgba(32,39,34,.07); }
 .payment-icon { width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 10px; color: var(--green-dark); background: var(--green-soft); font-weight: 800; }
 .payment-option strong { display: block; font-size: 14px; }
 .payment-option small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
 .payment-option .arrow { margin-left: auto; color: #9b9a91; }
+.support-option { width: 100%; }
+.support-option .payment-icon { color: #785c20; background: #fff3d5; }
 .payment-safety { margin: 0 44px 18px; padding: 17px; border-radius: 11px; background: #f1efe9; font-size: 12px; }
 .payment-safety p { margin: 4px 0 0; color: var(--muted); }
 .legal-note { margin: 0; padding: 0 44px 36px; color: var(--muted); font-size: 11px; }
+.support-form { padding: 28px 44px 38px; }
+.form-field { margin-bottom: 18px; }
+.form-field label { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 700; }
+.form-field label span { color: var(--muted); font-weight: 400; }
+.form-field > input, .form-field select, .form-field textarea { width: 100%; border: 1px solid #aaa99f; border-radius: 10px; color: var(--ink); background: var(--white); }
+.form-field > input, .form-field select { height: 48px; padding: 0 12px; }
+.form-field textarea { min-height: 120px; padding: 12px; resize: vertical; }
+.form-field > input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--green); outline: 3px solid rgba(22,131,75,.12); outline-offset: 0; }
+.form-field > small { display: block; margin-top: 6px; color: var(--muted); font-size: 10px; }
+.amount-input.compact input { height: 48px; font-size: 18px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-note { margin: 12px 0 0; color: var(--muted); text-align: center; font-size: 10px; }
 .toast { position: fixed; z-index: 80; left: 50%; bottom: 25px; padding: 12px 18px; border-radius: 99px; color: white; background: var(--ink); opacity: 0; transform: translate(-50%, 20px); pointer-events: none; transition: .25s; font-size: 13px; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
@@ -208,13 +230,17 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
   .footer-links { gap: 12px; }
   footer { padding-bottom: 100px; }
   .mobile-donate-bar { position: fixed; z-index: 18; right: 0; bottom: 0; left: 0; display: block; padding: 10px 16px max(10px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: rgba(255,255,255,.95); backdrop-filter: blur(12px); }
-  .donate-dialog { width: 100%; max-height: 92vh; margin: auto 0 0; border-radius: 22px 22px 0 0; }
+  .donate-dialog, .support-dialog { width: 100%; max-height: 92vh; margin: auto 0 0; border-radius: 22px 22px 0 0; }
   .dialog-head { padding: 34px 22px 22px; }
   .dialog-head h2 { font-size: 31px; }
+  .giving-heading { padding: 22px 22px 0; }
   .amount-picker { padding: 22px 22px 18px; }
-  .payment-grid { grid-template-columns: 1fr; padding: 0 22px 22px; }
+  .payment-grid, .support-grid { grid-template-columns: 1fr; padding: 0 22px 22px; }
+  .support-grid { padding-top: 18px; }
   .payment-safety { margin-inline: 22px; }
   .legal-note { padding-inline: 22px; }
+  .support-form { padding: 24px 22px 34px; }
+  .form-grid { grid-template-columns: 1fr; gap: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

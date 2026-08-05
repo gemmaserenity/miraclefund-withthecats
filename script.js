@@ -6,6 +6,7 @@ const campaign = {
   launched: "2026-08-04",
   deadline: "2026-08-31",
   organizerEmail: "campaign@example.com",
+  amazonWishlist: "https://www.amazon.com/hz/wishlist/ls/REPLACE_ME",
   payments: [
     { name: "PayPal", icon: "P", detail: "PayPal.Me", url: "https://paypal.me/REPLACE_ME" },
     { name: "Venmo", icon: "V", detail: "@REPLACE_ME", url: "https://venmo.com/u/REPLACE_ME" },
@@ -16,11 +17,21 @@ const campaign = {
     { name: "Wise", icon: "W", detail: "International transfer", url: "https://wise.com/pay/me/REPLACE_ME" },
     { name: "ACH / wire", icon: "⇄", detail: "Request secure bank instructions", contact: true },
     { name: "Cash / check", icon: "¤", detail: "Arrange with the organizer", contact: true }
+  ],
+  supportOptions: [
+    { name: "Amazon Wishlist", icon: "A", detail: "Send an item we currently need", wishlist: true },
+    { name: "Gift cards", icon: "G", detail: "Amazon, Fry’s, Petco, or another store", type: "Gift card" },
+    { name: "Goods & supplies", icon: "□", detail: "Offer food, cat care, or household items", type: "Goods or supplies" },
+    { name: "Prayer", icon: "♡", detail: "Send prayer, encouragement, or intention", type: "Prayer and encouragement" },
+    { name: "Time & skills", icon: "T", detail: "Offer professional or practical help", type: "Time or skills" },
+    { name: "Transportation", icon: "→", detail: "Help with rides, delivery, or moving", type: "Transportation" },
+    { name: "Other", icon: "+", detail: "Tell us another way you can help", type: "Other support" }
   ]
 };
 
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 const dialog = document.querySelector("#donate-dialog");
+const supportDialog = document.querySelector("#support-dialog");
 const amountInput = document.querySelector("#donation-amount");
 const toast = document.querySelector(".toast");
 
@@ -65,10 +76,35 @@ function renderPaymentOptions() {
   }).join("");
 }
 
+function renderSupportOptions() {
+  const container = document.querySelector("#support-options");
+  container.innerHTML = campaign.supportOptions.map(option => {
+    if (option.wishlist) {
+      return `<a class="payment-option support-option" href="${campaign.amazonWishlist}" target="_blank" rel="noopener noreferrer" data-support-link>
+        <span class="payment-icon" aria-hidden="true">${option.icon}</span>
+        <span><strong>${option.name}</strong><small>${option.detail}</small></span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>`;
+    }
+    return `<button class="payment-option support-option js-support" type="button" data-support-type="${option.type}">
+      <span class="payment-icon" aria-hidden="true">${option.icon}</span>
+      <span><strong>${option.name}</strong><small>${option.detail}</small></span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </button>`;
+  }).join("");
+}
+
 function openDonation(amount) {
   if (amount) amountInput.value = amount;
   dialog.showModal();
   requestAnimationFrame(() => amountInput.focus());
+}
+
+function openSupport(type) {
+  if (dialog.open) dialog.close();
+  document.querySelector("#support-type").value = type || "Other support";
+  supportDialog.showModal();
+  requestAnimationFrame(() => document.querySelector("#support-description").focus());
 }
 
 function showToast(message) {
@@ -84,9 +120,41 @@ document.querySelectorAll("[data-set-amount]").forEach(button => button.addEvent
   amountInput.focus();
 }));
 
-document.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
+document.querySelector("#donate-close").addEventListener("click", () => dialog.close());
+document.querySelector("#support-close").addEventListener("click", () => supportDialog.close());
 dialog.addEventListener("click", event => {
   if (event.target === dialog) dialog.close();
+});
+supportDialog.addEventListener("click", event => {
+  if (event.target === supportDialog) supportDialog.close();
+});
+
+document.querySelector("#support-options").addEventListener("click", event => {
+  const button = event.target.closest(".js-support");
+  if (button) openSupport(button.dataset.supportType);
+});
+
+document.querySelector("#support-form").addEventListener("submit", event => {
+  event.preventDefault();
+  if (campaign.organizerEmail.includes("example.com")) {
+    showToast("The campaign email still needs to be configured");
+    return;
+  }
+  const type = document.querySelector("#support-type").value;
+  const estimate = document.querySelector("#support-estimate").value;
+  const description = document.querySelector("#support-description").value.trim();
+  const name = document.querySelector("#support-name").value.trim() || "Not provided";
+  const email = document.querySelector("#support-email").value.trim() || "Not provided";
+  const recognition = document.querySelector("#support-recognition").value;
+  const body = [
+    `Type of support: ${type}`,
+    `Estimated value: ${estimate ? money.format(Number(estimate)) : "Not provided"}`,
+    `Offer: ${description}`,
+    `Name: ${name}`,
+    `Reply email: ${email}`,
+    `Recognition preference: ${recognition}`
+  ].join("\n\n");
+  window.location.href = `mailto:${campaign.organizerEmail}?subject=${encodeURIComponent(`${type} offer for With the Cats`)}&body=${encodeURIComponent(body)}`;
 });
 
 document.querySelectorAll(".js-share").forEach(button => button.addEventListener("click", async () => {
@@ -111,5 +179,14 @@ document.addEventListener("click", event => {
   }
 });
 
+document.addEventListener("click", event => {
+  const link = event.target.closest("[data-support-link]");
+  if (link?.href.includes("REPLACE_ME")) {
+    event.preventDefault();
+    showToast("The Amazon Wishlist link still needs to be configured");
+  }
+});
+
 renderCampaign();
 renderPaymentOptions();
+renderSupportOptions();
