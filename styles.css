@@ -89,7 +89,6 @@ h3 { line-height: 1.25; }
 .medical-role ul { margin: 25px 0; padding: 0; display: grid; gap: 13px; list-style: none; }
 .medical-role li { position: relative; padding-left: 24px; color: #e9eeea; font-size: 14px; }
 .medical-role li::before { content: "✓"; position: absolute; left: 0; color: #79c89a; font-weight: 700; }
-.medical-role .medical-caveat { margin-top: 24px; color: #aebdb4; font-size: 11px; }
 .document-card { margin-top: 28px; padding: 16px; display: flex; align-items: center; gap: 13px; border: 1px solid rgba(255,255,255,.2); border-radius: 13px; background: rgba(255,255,255,.08); color: white; text-decoration: none; transition: background .18s, transform .18s; }
 .document-card:hover { background: rgba(255,255,255,.13); transform: translateY(-1px); }
 .document-icon { width: 42px; height: 48px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 7px; color: #21362b; background: #f4c267; font-size: 10px; font-weight: 800; }
