@@ -29,6 +29,29 @@ const campaign = {
   ]
 };
 
+const supporters = [
+  { initials: "L. L.", gifts: [["2026-04-15", 25], ["2026-04-15", 25]] },
+  { initials: "B. C.", gifts: [["2026-04-24", 200]] },
+  { initials: "R. L.", gifts: [["2026-05-04", 250], ["2026-06-06", 200], ["2026-06-20", 50]] },
+  { initials: "B. C.", gifts: [["2026-05-05", 250]] },
+  { initials: "D. H.", gifts: [["2026-05-17", 500], ["2026-05-17", 500], ["2026-05-17", 150], ["2026-05-28", 500], ["2026-07-30", 200], ["2026-07-31", 285], ["2026-07-31", 500]] },
+  { initials: "J. F.", gifts: [["2026-05-18", 100]] },
+  { initials: "M. H.", gifts: [["2026-06-01", 50]] },
+  { initials: "B. S.", gifts: [["2026-06-07", 50]] },
+  { initials: "M. P.", gifts: [["2026-06-10", 50], ["2026-06-20", 60]] },
+  { initials: "R. M.", gifts: [["2026-06-15", 60], ["2026-07-10", 220]] },
+  { initials: "J. M.", gifts: [["2026-06-15", 100]] },
+  { initials: "D. W.", gifts: [["2026-06-20", 50], ["2026-07-10", 40]] },
+  { initials: "D. B.", gifts: [["2026-06-25", 200]] },
+  { initials: "B. F.", gifts: [["2026-07-05", 25]] },
+  { initials: "H. W.", gifts: [["2026-07-10", 30], ["2026-07-13", 220]] },
+  { initials: "J. S.", gifts: [["2026-07-13", 250]] },
+  { initials: "B. P.", gifts: [["2026-07-15", 50]] },
+  { initials: "A. M.", gifts: [["2026-07-22", 180]] },
+  { initials: "C.", gifts: [["2026-07-25", 50]] },
+  { initials: "B. & H.", gifts: [["2026-07-31", 50]] }
+];
+
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 const dialog = document.querySelector("#donate-dialog");
 const supportDialog = document.querySelector("#support-dialog");
@@ -60,6 +83,23 @@ function renderCampaign() {
   document.querySelectorAll("[data-deadline-copy]").forEach(el => {
     el.textContent = daysLeft > 0 ? `${daysLeft} days until the stated deadline` : "The stated deadline has arrived";
   });
+}
+
+function renderSupporters() {
+  const track = document.querySelector("#supporter-track");
+  const dateFormat = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
+  const contributions = supporters
+    .flatMap((supporter, supporterOrder) => supporter.gifts.map(([date, amount], giftOrder) => ({
+      initials: supporter.initials, date, amount, supporterOrder, giftOrder
+    })))
+    .sort((a, b) => a.date.localeCompare(b.date) || a.supporterOrder - b.supporterOrder || a.giftOrder - b.giftOrder);
+  const cards = contributions.map(contribution => {
+    return `<article class="supporter-card">
+      <span class="supporter-initials">${contribution.initials}</span>
+      <div class="supporter-gift"><strong>${money.format(contribution.amount)}</strong><time datetime="${contribution.date}">${dateFormat.format(new Date(`${contribution.date}T00:00:00Z`))}</time></div>
+    </article>`;
+  }).join("");
+  track.innerHTML = `<div class="supporter-set">${cards}</div><div class="supporter-set" aria-hidden="true">${cards}</div>`;
 }
 
 function renderPaymentOptions() {
@@ -188,5 +228,6 @@ document.addEventListener("click", event => {
 });
 
 renderCampaign();
+renderSupporters();
 renderPaymentOptions();
 renderSupportOptions();

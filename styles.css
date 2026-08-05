@@ -83,6 +83,19 @@ h3 { line-height: 1.25; }
 .direct-note > span { color: var(--green); }
 
 .mobile-summary, .mobile-actions { display: none; }
+.supporter-carousel { margin: 0 0 70px; overflow: hidden; }
+.supporter-carousel > p { margin: -6px 0 22px; color: var(--muted); font-size: 13px; }
+.supporter-window { overflow: hidden; border-radius: 16px; mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.supporter-window:focus-visible { outline: 3px solid rgba(22,131,75,.28); outline-offset: 3px; }
+.supporter-track { width: max-content; display: flex; animation: supporter-scroll 80s linear infinite; }
+.supporter-window:hover .supporter-track, .supporter-window:focus .supporter-track, .supporter-window:focus-within .supporter-track { animation-play-state: paused; }
+.supporter-set { display: flex; gap: 14px; padding-right: 14px; }
+.supporter-card { width: 210px; min-height: 96px; padding: 17px; display: flex; align-items: center; gap: 13px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 15px; background: var(--white); box-shadow: 0 8px 22px rgba(32,39,34,.06); }
+.supporter-initials { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: var(--green-soft); font-size: 11px; font-weight: 800; letter-spacing: .03em; }
+.supporter-gift strong, .supporter-gift time { display: block; }
+.supporter-gift strong { color: var(--green-dark); font-size: 19px; }
+.supporter-gift time { margin-top: 2px; color: var(--muted); font-size: 11px; }
+@keyframes supporter-scroll { to { transform: translateX(-50%); } }
 .story, .evidence, .medical-role, .funds, .updates, .organizer { max-width: 700px; scroll-margin-top: 100px; }
 .story p { font-size: 17px; line-height: 1.75; }
 .story-lead { font-size: 21px !important; color: #3e3e39; }
@@ -245,4 +258,7 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+  .supporter-window { overflow-x: auto; mask-image: none; }
+  .supporter-track { animation: none; }
+  .supporter-set[aria-hidden="true"] { display: none; }
 }
