@@ -5,7 +5,7 @@ const campaign = {
   donors: 20,
   launched: "2026-08-04",
   deadline: "2026-08-31",
-  organizerEmail: "campaign@example.com",
+  organizerEmail: "home@withthecats.org",
   amazonWishlist: "https://www.amazon.com/hz/wishlist/ls/REPLACE_ME",
   payments: [
     { name: "PayPal", icon: "P", detail: "PayPal.Me", url: "https://paypal.me/REPLACE_ME" },

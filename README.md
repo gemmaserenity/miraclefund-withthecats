@@ -8,10 +8,10 @@ No build step or dependencies are required. Open `index.html` directly, or run a
 
 ## Before publishing
 
-1. Review the campaign story in `index.html` and replace the remaining campaign email placeholder.
+1. Review the campaign story in `index.html` and confirm the public campaign email remains current.
 2. Replace `assets/campaign-placeholder.svg` with the main campaign photograph and update the `src`, dimensions, alt text, and social sharing image.
 3. In `script.js`, set the current `raised`, `goal`, `donors`, and `launched` values.
-4. Replace `campaign@example.com` everywhere with the dedicated campaign email.
+4. Test `home@withthecats.org` from an unrelated external email account and confirm it reaches the mailer workflow.
 5. Replace every `REPLACE_ME` payment handle/link and test it on a phone while logged out.
 6. Replace the Amazon Wishlist `REPLACE_ME` link in `script.js` and confirm that sharing is enabled on the intended list.
 7. Add a real privacy statement and the organizer's preferred contact details.
