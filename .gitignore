@@ -6,3 +6,8 @@ Thumbs.db
 *.pem
 *.key
 secrets/
+~$*
+~WRL*.tmp
+.tmp-pdf-tools/
+WithTheCats core story.docx
+campaign-preview.png

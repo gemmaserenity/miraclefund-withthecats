@@ -74,14 +74,29 @@ h3 { line-height: 1.25; }
 .direct-note > span { color: var(--green); }
 
 .mobile-summary, .mobile-actions { display: none; }
-.story, .funds, .updates, .organizer { max-width: 700px; scroll-margin-top: 100px; }
+.story, .medical-role, .funds, .updates, .organizer { max-width: 700px; scroll-margin-top: 100px; }
 .story p { font-size: 17px; line-height: 1.75; }
 .story-lead { font-size: 21px !important; color: #3e3e39; }
+.story h3 { margin: 38px 0 8px; font-family: "Newsreader", Georgia, serif; font-size: 27px; letter-spacing: -.02em; }
 .story-callout { display: flex; gap: 14px; margin: 30px 0; padding: 22px 24px; border-left: 4px solid var(--green); border-radius: 0 12px 12px 0; background: var(--green-soft); }
 .story-callout span { color: var(--green); }
 .story-callout p { margin: 0; font-size: 15px; line-height: 1.55; }
 .signature { margin-top: 30px; }
-.funds, .updates, .organizer { margin-top: 75px; padding-top: 54px; border-top: 1px solid var(--line); }
+.medical-role, .funds, .updates, .organizer { margin-top: 75px; padding-top: 54px; border-top: 1px solid var(--line); }
+.medical-role { padding: 40px; border: 0; border-radius: 20px; background: #21362b; color: white; }
+.medical-role .section-label { color: #9dd4b3; }
+.medical-role p { color: #d8e0da; }
+.medical-role ul { margin: 25px 0; padding: 0; display: grid; gap: 13px; list-style: none; }
+.medical-role li { position: relative; padding-left: 24px; color: #e9eeea; font-size: 14px; }
+.medical-role li::before { content: "✓"; position: absolute; left: 0; color: #79c89a; font-weight: 700; }
+.medical-role .medical-caveat { margin-top: 24px; color: #aebdb4; font-size: 11px; }
+.document-card { margin-top: 28px; padding: 16px; display: flex; align-items: center; gap: 13px; border: 1px solid rgba(255,255,255,.2); border-radius: 13px; background: rgba(255,255,255,.08); color: white; text-decoration: none; transition: background .18s, transform .18s; }
+.document-card:hover { background: rgba(255,255,255,.13); transform: translateY(-1px); }
+.document-icon { width: 42px; height: 48px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 7px; color: #21362b; background: #f4c267; font-size: 10px; font-weight: 800; }
+.document-card strong, .document-card small { display: block; }
+.document-card strong { font-size: 14px; }
+.document-card small { margin-top: 3px; color: #b7c4bc; font-size: 11px; }
+.document-arrow { margin-left: auto; color: #9dd4b3; }
 .fund-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .fund-grid article { padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); }
 .fund-grid article > span { color: var(--green); font-size: 12px; font-weight: 700; }
@@ -141,7 +156,7 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
   .mobile-summary p { margin: 9px 0 0; color: var(--muted); font-size: 12px; }
   .mobile-actions { display: grid; grid-template-columns: 1.3fr 1fr; gap: 10px; margin-bottom: 55px; }
   .hero-media { margin-bottom: 0; }
-  .story, .funds, .updates, .organizer { max-width: none; }
+  .story, .medical-role, .funds, .updates, .organizer { max-width: none; }
 }
 
 @media (max-width: 620px) {
@@ -153,6 +168,7 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
   .hero-media figcaption { display: none; }
   .mobile-actions { margin-bottom: 50px; }
   .fund-grid { grid-template-columns: 1fr; }
+  .medical-role { margin-inline: -2px; padding: 28px 22px; }
   .fund-grid h3 { margin-top: 15px; }
   .section-heading-row { align-items: start; }
   .text-button { display: none; }

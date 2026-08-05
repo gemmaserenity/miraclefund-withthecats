@@ -8,13 +8,14 @@ No build step or dependencies are required. Open `index.html` directly, or run a
 
 ## Before publishing
 
-1. Replace all bracketed placeholders in `index.html`.
+1. Review the campaign story in `index.html` and replace the remaining campaign email placeholder.
 2. Replace `assets/campaign-placeholder.svg` with the main campaign photograph and update the `src`, dimensions, alt text, and social sharing image.
 3. In `script.js`, set the current `raised`, `goal`, `donors`, and `launched` values.
 4. Replace `campaign@example.com` everywhere with the dedicated campaign email.
 5. Replace every `REPLACE_ME` payment handle/link and test it on a phone while logged out.
 6. Add a real privacy statement and the organizer's preferred contact details.
-7. Review all tax, beneficiary, and use-of-funds wording for accuracy.
+7. Confirm the fundraising goal and current total in `script.js`.
+8. Review all medical, tax, beneficiary, and use-of-funds wording for accuracy before publishing.
 
 ## Important bank-detail policy
 
