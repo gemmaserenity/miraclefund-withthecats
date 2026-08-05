@@ -1,8 +1,10 @@
 const campaign = {
   raised: 0,
-  goal: 25000,
+  goal: 500000,
+  firstMilestone: 25000,
   donors: 0,
   launched: "2026-08-04",
+  deadline: "2026-08-31",
   organizerEmail: "campaign@example.com",
   payments: [
     { name: "PayPal", icon: "P", detail: "PayPal.Me", url: "https://paypal.me/REPLACE_ME" },
@@ -31,6 +33,21 @@ function renderCampaign() {
   document.querySelectorAll(".progress").forEach(el => {
     el.setAttribute("aria-valuemax", campaign.goal);
     el.setAttribute("aria-valuenow", campaign.raised);
+  });
+
+  const phoenixParts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Phoenix",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric"
+  }).formatToParts(new Date());
+  const datePart = type => Number(phoenixParts.find(part => part.type === type).value);
+  const today = Date.UTC(datePart("year"), datePart("month") - 1, datePart("day"));
+  const deadline = Date.UTC(2026, 7, 31);
+  const daysLeft = Math.max(0, Math.ceil((deadline - today) / 86400000));
+  document.querySelectorAll("[data-days-left]").forEach(el => el.textContent = daysLeft.toLocaleString());
+  document.querySelectorAll("[data-deadline-copy]").forEach(el => {
+    el.textContent = daysLeft > 0 ? `${daysLeft} days until the stated deadline` : "The stated deadline has arrived";
   });
 }
 
@@ -73,7 +90,7 @@ dialog.addEventListener("click", event => {
 });
 
 document.querySelectorAll(".js-share").forEach(button => button.addEventListener("click", async () => {
-  const shareData = { title: document.title, text: "Please read and share our family fundraiser.", url: window.location.href };
+  const shareData = { title: document.title, text: "We have been told to vacate by August 31. Please help us secure a permanent home and keep our family of cats together.", url: window.location.href };
   try {
     if (navigator.share) await navigator.share(shareData);
     else {

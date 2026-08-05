@@ -14,7 +14,7 @@ No build step or dependencies are required. Open `index.html` directly, or run a
 4. Replace `campaign@example.com` everywhere with the dedicated campaign email.
 5. Replace every `REPLACE_ME` payment handle/link and test it on a phone while logged out.
 6. Add a real privacy statement and the organizer's preferred contact details.
-7. Confirm the fundraising goal and current total in `script.js`.
+7. Keep the $500,000 fundraising goal, current total, donor count, and August 31 deadline current in `script.js`.
 8. Review all medical, tax, beneficiary, and use-of-funds wording for accuracy before publishing.
 
 ## Important bank-detail policy

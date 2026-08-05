@@ -25,6 +25,10 @@ img { display: block; max-width: 100%; }
 
 .site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid rgba(222,221,213,.85); background: rgba(251,250,247,.92); backdrop-filter: blur(14px); }
 .nav-wrap { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+.deadline-strip { padding: 10px 0; color: white; background: #983b2f; font-size: 12px; }
+.deadline-strip .shell { display: flex; align-items: center; justify-content: center; gap: 14px; text-align: center; }
+.deadline-strip strong { text-transform: uppercase; letter-spacing: .06em; }
+.deadline-strip span { color: #ffe2dc; }
 .brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 700; letter-spacing: -.02em; }
 .brand-mark { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; color: var(--white); background: var(--green); font-size: 14px; }
 nav { display: flex; align-items: center; gap: 28px; margin-left: auto; }
@@ -49,6 +53,7 @@ h1 { max-width: 850px; margin: 0; font-size: clamp(45px, 6vw, 76px); }
 h2 { margin: 0 0 18px; font-size: clamp(32px, 4vw, 46px); }
 h3 { line-height: 1.25; }
 .organizer-line { display: flex; align-items: center; gap: 12px; margin-top: 25px; color: var(--muted); }
+.campaign-deck { max-width: 790px; margin: 22px 0 0; color: #4b4b45; font-size: clamp(17px, 2vw, 21px); line-height: 1.55; }
 .organizer-line p { margin: 0; font-size: 14px; }
 .avatar { width: 42px; height: 42px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid #d4d3ca; border-radius: 50%; color: var(--green-dark); background: #f0eee7; font-size: 12px; font-weight: 700; }
 .avatar-small { width: 36px; height: 36px; }
@@ -65,6 +70,10 @@ h3 { line-height: 1.25; }
 .progress { height: 9px; overflow: hidden; border-radius: 99px; background: #e8e8e3; }
 .progress-fill { width: 0; height: 100%; display: block; border-radius: inherit; background: linear-gradient(90deg, var(--green), #33a468); transition: width .8s ease; }
 .supporter-count { margin: 11px 0 22px; color: var(--muted); font-size: 13px; }
+.deadline-chip { width: fit-content; margin-bottom: 14px; padding: 6px 10px; border-radius: 99px; color: #8b3128; background: #fbe9e5; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.sidebar-milestone { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: -8px 0 18px; padding: 10px 12px; border-radius: 9px; background: #f3f1eb; font-size: 11px; }
+.sidebar-milestone span { color: var(--muted); }
+.sidebar-milestone strong { font-size: 14px; }
 .donation-card .button + .button { margin-top: 10px; }
 .quick-gifts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
 .quick-gifts button, .amount-chips button { padding: 8px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); cursor: pointer; font-weight: 600; }
@@ -74,7 +83,7 @@ h3 { line-height: 1.25; }
 .direct-note > span { color: var(--green); }
 
 .mobile-summary, .mobile-actions { display: none; }
-.story, .medical-role, .funds, .updates, .organizer { max-width: 700px; scroll-margin-top: 100px; }
+.story, .evidence, .medical-role, .funds, .updates, .organizer { max-width: 700px; scroll-margin-top: 100px; }
 .story p { font-size: 17px; line-height: 1.75; }
 .story-lead { font-size: 21px !important; color: #3e3e39; }
 .story h3 { margin: 38px 0 8px; font-family: "Newsreader", Georgia, serif; font-size: 27px; letter-spacing: -.02em; }
@@ -82,7 +91,14 @@ h3 { line-height: 1.25; }
 .story-callout span { color: var(--green); }
 .story-callout p { margin: 0; font-size: 15px; line-height: 1.55; }
 .signature { margin-top: 30px; }
-.medical-role, .funds, .updates, .organizer { margin-top: 75px; padding-top: 54px; border-top: 1px solid var(--line); }
+.evidence, .medical-role, .funds, .updates, .organizer { margin-top: 75px; padding-top: 54px; border-top: 1px solid var(--line); }
+.evidence-intro, .funds-intro { color: var(--muted); font-size: 15px; }
+.evidence-paper { margin-top: 26px; padding: 28px; border: 1px solid #d7d3c9; border-radius: 5px; background: #fffefa; box-shadow: 0 10px 30px rgba(40,39,34,.07); transform: rotate(-.25deg); }
+.evidence-meta { padding-bottom: 13px; display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid #dcd8ce; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+.evidence blockquote { margin: 23px 0 0; font-family: Georgia, serif; }
+.evidence blockquote p { margin: 13px 0; color: #35342f; font-size: 16px; line-height: 1.55; }
+.evidence mark { padding: 2px 4px; color: inherit; background: #ffe6a8; }
+.evidence-note { color: var(--muted); font-size: 11px; }
 .medical-role { padding: 40px; border: 0; border-radius: 20px; background: #21362b; color: white; }
 .medical-role .section-label { color: #9dd4b3; }
 .medical-role p { color: #d8e0da; }
@@ -96,11 +112,21 @@ h3 { line-height: 1.25; }
 .document-card strong { font-size: 14px; }
 .document-card small { margin-top: 3px; color: #b7c4bc; font-size: 11px; }
 .document-arrow { margin-left: auto; color: #9dd4b3; }
-.fund-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.fund-grid article { padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); }
-.fund-grid article > span { color: var(--green); font-size: 12px; font-weight: 700; }
-.fund-grid h3 { margin: 28px 0 8px; font-size: 16px; }
-.fund-grid p { margin: 0; color: var(--muted); font-size: 13px; }
+.budget-list { margin: 28px 0 20px; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--white); }
+.budget-row, .budget-total { padding: 17px 20px; display: flex; align-items: center; justify-content: space-between; gap: 25px; border-bottom: 1px solid var(--line); }
+.budget-row span { min-width: 0; }
+.budget-row strong, .budget-row small { display: block; }
+.budget-row strong { font-size: 14px; }
+.budget-row small { margin-top: 3px; color: var(--muted); font-size: 11px; }
+.budget-row b { white-space: nowrap; font-size: 16px; }
+.budget-row.featured { background: var(--green-soft); }
+.budget-total { border: 0; color: white; background: var(--green-dark); }
+.budget-total span { font-size: 13px; font-weight: 700; }
+.budget-total strong { font-size: 24px; }
+.milestone-callout { margin-bottom: 15px; padding: 20px; display: grid; grid-template-columns: 1fr auto; gap: 3px 20px; border: 1px solid #e2b85e; border-radius: 12px; background: #fff7df; }
+.milestone-callout span { color: #785c20; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.milestone-callout strong { grid-row: span 2; font-size: 27px; }
+.milestone-callout p { margin: 2px 0 0; color: var(--muted); font-size: 12px; }
 .transparency-note { padding: 15px 18px; border-radius: 10px; color: var(--muted); background: #f0eee8; font-size: 13px; }
 .section-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
 .text-button { margin-bottom: 22px; padding: 0; border: 0; border-bottom: 1px solid currentColor; color: var(--green-dark); background: transparent; cursor: pointer; font-weight: 700; }
@@ -155,20 +181,27 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
   .mobile-summary p { margin: 9px 0 0; color: var(--muted); font-size: 12px; }
   .mobile-actions { display: grid; grid-template-columns: 1.3fr 1fr; gap: 10px; margin-bottom: 55px; }
   .hero-media { margin-bottom: 0; }
-  .story, .medical-role, .funds, .updates, .organizer { max-width: none; }
+  .story, .evidence, .medical-role, .funds, .updates, .organizer { max-width: none; }
 }
 
 @media (max-width: 620px) {
   .shell { width: min(100% - 28px, 1120px); }
   .nav-wrap { height: 62px; }
+  .deadline-strip { padding: 8px 0; }
+  .deadline-strip .shell { flex-direction: column; gap: 1px; }
   .campaign-heading { padding-block: 38px 20px; }
   h1 { font-size: 44px; }
+  .campaign-deck { font-size: 17px; }
   .hero-media { margin-inline: -14px; border-radius: 0; }
   .hero-media figcaption { display: none; }
   .mobile-actions { margin-bottom: 50px; }
-  .fund-grid { grid-template-columns: 1fr; }
   .medical-role { margin-inline: -2px; padding: 28px 22px; }
-  .fund-grid h3 { margin-top: 15px; }
+  .evidence-paper { padding: 20px; }
+  .evidence-meta { flex-direction: column; gap: 3px; }
+  .budget-row, .budget-total { padding: 15px; }
+  .budget-row { align-items: start; }
+  .milestone-callout { grid-template-columns: 1fr; }
+  .milestone-callout strong { grid-row: auto; }
   .section-heading-row { align-items: start; }
   .text-button { display: none; }
   .footer-inner, .footer-links { flex-direction: column; }
