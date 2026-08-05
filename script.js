@@ -1,8 +1,8 @@
 const campaign = {
-  raised: 0,
+  raised: 5470,
   goal: 500000,
   firstMilestone: 25000,
-  donors: 0,
+  donors: 20,
   launched: "2026-08-04",
   deadline: "2026-08-31",
   organizerEmail: "campaign@example.com",
