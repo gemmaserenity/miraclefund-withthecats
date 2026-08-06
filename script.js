@@ -56,10 +56,10 @@ function renderCampaign() {
     el.textContent = supporterLabel;
     if (!supporterLabel) el.hidden = true;
   });
-  const percent = campaign.goal > 0 ? Math.min(100, (campaign.raised / campaign.goal) * 100) : 0;
+  const percent = campaign.firstMilestone > 0 ? Math.min(100, (campaign.raised / campaign.firstMilestone) * 100) : 0;
   document.querySelectorAll(".progress-fill").forEach(el => el.style.width = `${percent}%`);
   document.querySelectorAll(".progress").forEach(el => {
-    el.setAttribute("aria-valuemax", campaign.goal);
+    el.setAttribute("aria-valuemax", campaign.firstMilestone);
     el.setAttribute("aria-valuenow", campaign.raised);
   });
 
