@@ -1,10 +1,14 @@
-# With the Cats — campaign site
+# With the Cats - campaign site
 
 An original, static campaign website inspired by the proven information architecture of major crowdfunding pages. It is intentionally platform-independent and ready for GitHub Pages, Cloudflare Pages, Netlify, or any basic web host.
 
 ## Preview locally
 
 No build step or dependencies are required. Open `index.html` directly, or run a simple local static server from this folder.
+
+## Resend form delivery
+
+The private support form posts to the Cloudflare Pages Function at `/api/support`, which sends the message to `donation@withthecats.org` through Resend. In the Cloudflare Pages project, add `RESEND_API_KEY` as an encrypted production secret under **Settings → Variables and Secrets**, then redeploy. The `withthecats.org` sending domain must also be verified in Resend. Never put the API key in this repository or in browser-side JavaScript.
 
 ## Before publishing
 
@@ -20,7 +24,7 @@ No build step or dependencies are required. Open `index.html` directly, or run a
 
 ## Important bank-detail policy
 
-Do **not** commit a bank routing number, account number, debit-card number, login, or recovery information to GitHub—even in a private repository—because Git history preserves old values. The scaffold makes ACH/wire a “request secure instructions” option. Send verified bank instructions directly after contact, or connect a reputable hosted payment processor that tokenizes bank information.
+Do **not** commit a bank routing number, account number, debit-card number, login, or recovery information to GitHub - even in a private repository - because Git history preserves old values. The scaffold makes ACH/wire a “request secure instructions” option. Send verified bank instructions directly after contact, or connect a reputable hosted payment processor that tokenizes bank information.
 
 ## Keeping totals current
 

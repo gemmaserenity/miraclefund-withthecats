@@ -8,23 +8,14 @@ const campaign = {
   organizerEmail: "home@withthecats.org",
   amazonWishlist: "https://www.amazon.com/hz/wishlist/ls/31DEZVLJU2LGI?ref_=wl_share",
   payments: [
+    { name: "Payment cards", icon: "Card", detail: "Secure checkout", url: "https://donate.stripe.com/fZu3cwcgrebradR2rxbV600" },
     { name: "PayPal", icon: "P", detail: "PayPal.Me / gemmaserenity", url: "https://paypal.com/paypalme/gemmaserenity" },
     { name: "Venmo", icon: "V", detail: "@Gemma-Gorokhoff · confirmation phone: 520-233-9602", url: "https://venmo.com/u/Gemma-Gorokhoff" },
     { name: "Cash App", icon: "$", detail: "$themanifestingqueen", url: "https://cash.app/$themanifestingqueen" },
-    { name: "Zelle", icon: "Z", detail: "Verified email or phone", contact: true },
-    { name: "Chime", icon: "C", detail: "Search $Gemma-Gorokhoff in Pay Anyone", url: "https://help.chime.com/hc/en-us/articles/235063248-How-do-I-request-or-pay-money-with-Chime-s-Pay-Anyone-feature" },
-    { name: "SoFi", icon: "S", detail: "Direct payment details", contact: true },
-    { name: "ACH / wire", icon: "⇄", detail: "Request secure bank instructions", contact: true },
-    { name: "Cash / check", icon: "¤", detail: "Arrange with the organizer", contact: true }
+    { name: "Chime", icon: "C", detail: "Search $Gemma-Gorokhoff in Pay Anyone", url: "https://www.chime.com/" },
   ],
   supportOptions: [
-    { name: "Amazon Wishlist", icon: "A", detail: "Send an item we currently need", wishlist: true },
-    { name: "Gift cards", icon: "G", detail: "Amazon, Fry’s, Petco, or another store", type: "Gift card" },
-    { name: "Goods & supplies", icon: "□", detail: "Offer food, cat care, or household items", type: "Goods or supplies" },
-    { name: "Prayer", icon: "♡", detail: "Send prayer, encouragement, or intention", type: "Prayer and encouragement" },
-    { name: "Time & skills", icon: "T", detail: "Offer professional or practical help", type: "Time or skills" },
-    { name: "Transportation", icon: "→", detail: "Help with rides, delivery, or moving", type: "Transportation" },
-    { name: "Other", icon: "+", detail: "Tell us another way you can help", type: "Other support" }
+    { name: "Amazon Wishlist", icon: "A", detail: "Send something urgently needed", wishlist: true }
   ]
 };
 
@@ -60,7 +51,11 @@ const toast = document.querySelector(".toast");
 function renderCampaign() {
   document.querySelectorAll("[data-raised]").forEach(el => el.textContent = money.format(campaign.raised));
   document.querySelectorAll("[data-goal]").forEach(el => el.textContent = money.format(campaign.goal));
-  document.querySelectorAll("[data-donor-count]").forEach(el => el.textContent = campaign.donors.toLocaleString());
+  const supporterLabel = campaign.donors > 0 ? `${campaign.donors.toLocaleString()} financial supporter${campaign.donors === 1 ? "" : "s"}` : "";
+  document.querySelectorAll("[data-supporter-label]").forEach(el => {
+    el.textContent = supporterLabel;
+    if (!supporterLabel) el.hidden = true;
+  });
   const percent = campaign.goal > 0 ? Math.min(100, (campaign.raised / campaign.goal) * 100) : 0;
   document.querySelectorAll(".progress-fill").forEach(el => el.style.width = `${percent}%`);
   document.querySelectorAll(".progress").forEach(el => {
@@ -68,20 +63,23 @@ function renderCampaign() {
     el.setAttribute("aria-valuenow", campaign.raised);
   });
 
-  const phoenixParts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Phoenix",
-    year: "numeric",
-    month: "numeric",
-    day: "numeric"
-  }).formatToParts(new Date());
-  const datePart = type => Number(phoenixParts.find(part => part.type === type).value);
-  const today = Date.UTC(datePart("year"), datePart("month") - 1, datePart("day"));
-  const deadline = Date.UTC(2026, 7, 31);
-  const daysLeft = Math.max(0, Math.ceil((deadline - today) / 86400000));
-  document.querySelectorAll("[data-days-left]").forEach(el => el.textContent = daysLeft.toLocaleString());
-  document.querySelectorAll("[data-deadline-copy]").forEach(el => {
-    el.textContent = daysLeft > 0 ? `${daysLeft} days until the stated deadline` : "The stated deadline has arrived";
-  });
+  const deadline = Date.parse("2026-09-01T06:59:00Z");
+  const remaining = Math.max(0, deadline - Date.now());
+  let countdownLabel = "The stated deadline has arrived";
+  let countdownHeading = "THE STATED DEADLINE HAS ARRIVED";
+  if (remaining > 0) {
+    const days = Math.floor(remaining / 86400000);
+    const hours = Math.max(1, Math.ceil(remaining / 3600000));
+    if (days >= 1) {
+      countdownLabel = `${days} day${days === 1 ? " remains" : "s remain"}`;
+      countdownHeading = `${days} DAY${days === 1 ? " REMAINS" : "S REMAIN"}`;
+    } else {
+      countdownLabel = `${hours} hour${hours === 1 ? " remains" : "s remain"}`;
+      countdownHeading = `${hours} HOUR${hours === 1 ? " REMAINS" : "S REMAIN"}`;
+    }
+  }
+  document.querySelectorAll("[data-countdown-label]").forEach(el => el.textContent = countdownLabel);
+  document.querySelectorAll("[data-countdown-heading]").forEach(el => el.textContent = countdownHeading);
 }
 
 function renderSupporters() {
@@ -141,7 +139,7 @@ function openDonation(amount) {
 
 function openSupport(type) {
   if (dialog.open) dialog.close();
-  document.querySelector("#support-type").value = type || "Other support";
+  document.querySelector("#support-type").value = type || "Other practical support";
   supportDialog.showModal();
   requestAnimationFrame(() => document.querySelector("#support-description").focus());
 }
@@ -153,6 +151,7 @@ function showToast(message) {
 }
 
 document.querySelectorAll(".js-donate").forEach(button => button.addEventListener("click", () => openDonation()));
+document.querySelectorAll(".js-support").forEach(button => button.addEventListener("click", () => openSupport(button.dataset.supportType)));
 document.querySelectorAll(".js-gift").forEach(button => button.addEventListener("click", () => openDonation(button.dataset.amount)));
 document.querySelectorAll("[data-set-amount]").forEach(button => button.addEventListener("click", () => {
   amountInput.value = button.dataset.setAmount;
@@ -173,40 +172,82 @@ document.querySelector("#support-options").addEventListener("click", event => {
   if (button) openSupport(button.dataset.supportType);
 });
 
-document.querySelector("#support-form").addEventListener("submit", event => {
-  event.preventDefault();
-  if (campaign.organizerEmail.includes("example.com")) {
-    showToast("The campaign email still needs to be configured");
+document.querySelector("#continue-payment").addEventListener("click", () => {
+  if (!amountInput.value || Number(amountInput.value) < 1) {
+    amountInput.setCustomValidity("Please choose or enter a gift amount.");
+    amountInput.reportValidity();
     return;
   }
+  amountInput.setCustomValidity("");
+  document.querySelector("#payment-options a")?.focus();
+});
+
+document.querySelector("#support-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const submitButton = form.querySelector('[type="submit"]');
   const type = document.querySelector("#support-type").value;
   const estimate = document.querySelector("#support-estimate").value;
   const description = document.querySelector("#support-description").value.trim();
-  const name = document.querySelector("#support-name").value.trim() || "Not provided";
-  const email = document.querySelector("#support-email").value.trim() || "Not provided";
+  const name = document.querySelector("#support-name").value.trim();
+  const email = document.querySelector("#support-email").value.trim();
   const recognition = document.querySelector("#support-recognition").value;
-  const body = [
-    `Type of support: ${type}`,
-    `Estimated value: ${estimate ? money.format(Number(estimate)) : "Not provided"}`,
-    `Offer: ${description}`,
-    `Name: ${name}`,
-    `Reply email: ${email}`,
-    `Recognition preference: ${recognition}`
-  ].join("\n\n");
-  window.location.href = `mailto:${campaign.organizerEmail}?subject=${encodeURIComponent(`${type} offer for With the Cats`)}&body=${encodeURIComponent(body)}`;
+  const website = document.querySelector("#support-website").value;
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending…";
+
+  try {
+    const response = await fetch("/api/support", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type, estimate, description, name, email, recognition, website })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "Your message could not be sent.");
+
+    form.reset();
+    supportDialog.close();
+    showToast("Your private message was sent to Gemma");
+  } catch (error) {
+    showToast(error.message || "Your message could not be sent. Please try again.");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Prepare private message";
+  }
 });
 
+const shareText = "A disabled Arizona man and his wife have until August 31 to find safety for themselves and their beloved bonded cat family. After years of family instability and financial sacrifice, they are fighting to keep the animals who help him endure relentless neurological pain. Please read, give, or share.";
+const campaignUrl = "https://miraclefund.withthecats.org/";
+
 document.querySelectorAll(".js-share").forEach(button => button.addEventListener("click", async () => {
-  const shareData = { title: document.title, text: "We have been told to vacate by August 31. Please help us secure a permanent home and keep our family of cats together.", url: window.location.href };
+  const shareData = { title: document.title, text: shareText, url: campaignUrl };
   try {
     if (navigator.share) await navigator.share(shareData);
     else {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(campaignUrl);
       showToast("Campaign link copied");
     }
   } catch (error) {
     if (error.name !== "AbortError") showToast("Copy the page address to share");
   }
+}));
+
+document.querySelectorAll("[data-share-platform]").forEach(button => button.addEventListener("click", () => {
+  const encodedUrl = encodeURIComponent(campaignUrl);
+  const encodedText = encodeURIComponent(shareText);
+  const urls = {
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    threads: `https://www.threads.net/intent/post?text=${encodedText}%20${encodedUrl}`,
+    x: `https://x.com/intent/post?text=${encodedText}&url=${encodedUrl}`,
+    whatsapp: `https://wa.me/?text=${encodedText}%20${encodedUrl}`
+  };
+  window.open(urls[button.dataset.sharePlatform], "_blank", "noopener,noreferrer");
+}));
+
+document.querySelectorAll("[data-copy-link]").forEach(button => button.addEventListener("click", async () => {
+  await navigator.clipboard.writeText(campaignUrl);
+  showToast("Campaign link copied");
 }));
 
 document.addEventListener("click", event => {
