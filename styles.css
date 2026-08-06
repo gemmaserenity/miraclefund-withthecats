@@ -123,6 +123,17 @@ h3 { line-height: 1.25; }
 .medical-role { padding: 40px; border: 0; border-radius: 20px; background: #21362b; color: white; }
 .medical-role .section-label { color: #9dd4b3; }
 .medical-role p { color: #d8e0da; }
+.story-video { margin: 28px 0 32px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .16); border-radius: 16px; background: #101a2b; box-shadow: 0 18px 45px rgba(0, 0, 0, .24); }
+.story-video video { display: block; width: 100%; max-width: 100%; height: auto; max-height: min(78vh, 760px); background: #080d16; object-fit: contain; }
+.story-video figcaption { display: grid; gap: 4px; padding: 14px 17px 16px; color: white; }
+.story-video figcaption strong { font-size: 15px; }
+.story-video figcaption span { color: #d8e0da; font-size: 13px; line-height: 1.5; }
+.hero-video-cta { margin: -10px 0 34px; text-align: center; }
+.hero-video-cta p { margin: 0 auto 12px; color: #fff; font-size: 17px; font-weight: 700; line-height: 1.55; }
+.hero-video-actions { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.hero-video-cta .button { margin-top: 0; }
+.button-inverted { color: var(--campaign-burgundy); border-color: #fff; background: #fff; box-shadow: 0 8px 22px rgba(0, 0, 0, .16); }
+.button-inverted:hover { color: var(--campaign-burgundy); background: var(--campaign-ivory); }
 .medical-role ul { margin: 25px 0; padding: 0; display: grid; gap: 13px; list-style: none; }
 .medical-role li { position: relative; padding-left: 24px; color: #e9eeea; font-size: 14px; }
 .medical-role li::before { content: "✓"; position: absolute; left: 0; color: #79c89a; font-weight: 700; }
@@ -243,7 +254,9 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 .story li + li { margin-top: 8px; }
 .story .button { margin-top: 18px; white-space: normal; text-align: center; }
 .supporter-carousel { padding-block: 64px; margin-bottom: 0; }
-.supporter-carousel > p { max-width: 74ch; }
+.supporter-intro { width: 100%; max-width: 760px; margin-inline: auto; }
+.supporter-intro > p { color: var(--muted); font-size: 18px; line-height: 1.75; }
+.supporter-intro h2 { color: var(--campaign-navy); }
 .supporter-window { margin-top: 28px; }
 .medical-role { max-width: none; margin-inline: -46px; padding: 54px 46px; background: var(--campaign-navy); }
 .medical-role h2, .medical-role h3 { color: white; }
@@ -283,6 +296,8 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
   .hero-grid { gap: 36px; }
   .hero-copy h1 { overflow-wrap: anywhere; font-size: clamp(39px, 12vw, 52px); }
   .hero-copy > p { font-size: 17px; }
+  .hero-video-actions { align-items: stretch; flex-direction: column; }
+  .hero-video-actions .button { width: 100%; }
   .hero-media { margin-inline: 0; border-radius: 14px; }
   .hero-media figcaption { display: block; }
   .story-shell { padding-bottom: 70px; }
