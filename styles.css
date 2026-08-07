@@ -275,9 +275,26 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 .closing-donation .amount-line span, .closing-donation p { color: #e8e2da; }
 .final-message { margin-inline: -46px; padding: 64px 46px; border-bottom: 4px solid var(--campaign-gold); }
 .site-footer { margin-top: 0; color: white; background: var(--campaign-navy); }
-.site-footer .footer-inner { align-items: center; }
+.site-footer .footer-inner { align-items: flex-start; flex-wrap: wrap; }
 .site-footer .brand, .site-footer .footer-links a { color: white; }
 .site-footer .footer-links { flex-wrap: wrap; }
+.contact-section { padding: 72px 0; scroll-margin-top: 92px; background: #f3eadf; }
+.contact-grid { display: grid; grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr); gap: 54px; align-items: center; }
+.contact-details h2 { color: var(--campaign-navy); }
+.contact-details > p:not(.section-label) { max-width: 48ch; color: var(--muted); font-size: 17px; line-height: 1.7; }
+.contact-details address { display: grid; gap: 8px; margin-top: 26px; font-style: normal; }
+.contact-details address strong { color: var(--campaign-navy); font-size: 20px; }
+.contact-details address span { color: var(--muted); }
+.contact-details address a { width: fit-content; color: var(--campaign-burgundy); font-weight: 700; }
+.contact-map { min-width: 0; overflow: hidden; border: 1px solid #d8c8b2; border-radius: 18px; background: #e9dfd2; box-shadow: var(--shadow); }
+.contact-map iframe { display: block; width: 100%; height: 380px; border: 0; }
+.contact-map-link { display: block; padding: 13px 18px; color: var(--campaign-burgundy); background: white; text-align: center; font-size: 13px; font-weight: 700; }
+.footer-social { display: grid; gap: 9px; }
+.footer-social h2 { margin: 0 0 3px; color: white; font-family: "DM Sans", sans-serif; font-size: 14px; letter-spacing: 0; }
+.footer-social div { display: grid; grid-template-columns: 72px auto auto; gap: 10px; font-size: 12px; }
+.footer-social span { color: #c9c2b9; }
+.footer-social a { color: white; font-weight: 700; }
+.site-footer .button { flex: 0 1 310px; white-space: normal; text-align: center; }
 .practical-support-button { margin: 0 44px 28px; }
 #continue-payment { margin-top: 14px; }
 .button:disabled { cursor: wait; opacity: .7; }
@@ -288,6 +305,7 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
   .hero-visual { position: static; }
   .hero .donation-card { display: block; }
   .story { max-width: 720px; }
+  .contact-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 620px) {
