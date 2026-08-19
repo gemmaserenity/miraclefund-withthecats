@@ -1,8 +1,8 @@
 const campaign = {
-  raised: 5470,
+  raised: 6145,
   goal: 500000,
   firstMilestone: 25000,
-  donors: 20,
+  donors: 25,
   launched: "2026-08-04",
   deadline: "2026-08-31",
   organizerEmail: "home@withthecats.org",
@@ -20,26 +20,31 @@ const campaign = {
 };
 
 const supporters = [
-  { initials: "L. L.", gifts: [["2026-04-15", 25], ["2026-04-15", 25]] },
-  { initials: "B. C.", gifts: [["2026-04-24", 200]] },
-  { initials: "R. L.", gifts: [["2026-05-04", 250], ["2026-06-06", 200], ["2026-06-20", 50]] },
-  { initials: "B. C.", gifts: [["2026-05-05", 250]] },
-  { initials: "D. H.", gifts: [["2026-05-17", 500], ["2026-05-17", 500], ["2026-05-17", 150], ["2026-05-28", 500], ["2026-07-30", 200], ["2026-07-31", 285], ["2026-07-31", 500]] },
-  { initials: "J. F.", gifts: [["2026-05-18", 100]] },
-  { initials: "M. H.", gifts: [["2026-06-01", 50]] },
-  { initials: "B. S.", gifts: [["2026-06-07", 50]] },
-  { initials: "M. P.", gifts: [["2026-06-10", 50], ["2026-06-20", 60]] },
-  { initials: "R. M.", gifts: [["2026-06-15", 60], ["2026-07-10", 220]] },
-  { initials: "J. M.", gifts: [["2026-06-15", 100]] },
-  { initials: "D. W.", gifts: [["2026-06-20", 50], ["2026-07-10", 40]] },
-  { initials: "D. B.", gifts: [["2026-06-25", 200]] },
-  { initials: "B. F.", gifts: [["2026-07-05", 25]] },
-  { initials: "H. W.", gifts: [["2026-07-10", 30], ["2026-07-13", 220]] },
-  { initials: "J. S.", gifts: [["2026-07-13", 250]] },
-  { initials: "B. P.", gifts: [["2026-07-15", 50]] },
-  { initials: "A. M.", gifts: [["2026-07-22", 180]] },
-  { initials: "C.", gifts: [["2026-07-25", 50]] },
-  { initials: "B. & H.", gifts: [["2026-07-31", 50]] }
+  { name: "Lisa", gifts: [["2026-04-15", 25], ["2026-04-15", 25]] },
+  { name: "Ben", gifts: [["2026-04-24", 200], ["2026-06-07", 50]] },
+  { name: "Regina", gifts: [["2026-05-04", 250], ["2026-06-06", 200], ["2026-06-20", 50], ["2026-08-03", 50], ["2026-08-14", 50]] },
+  { name: "Brian", gifts: [["2026-05-05", 250]] },
+  { name: "Dan", gifts: [["2026-05-17", 500], ["2026-05-17", 500], ["2026-05-17", 150], ["2026-05-28", 500], ["2026-07-30", 200], ["2026-07-31", 285], ["2026-07-31", 500]] },
+  { name: "Joe", gifts: [["2026-05-18", 100]] },
+  { name: "Mark", gifts: [["2026-06-01", 50]] },
+  { name: "Monica", gifts: [["2026-06-10", 50], ["2026-06-20", 60]] },
+  { name: "Rod", gifts: [["2026-06-15", 60], ["2026-07-10", 220]] },
+  { name: "Jessica", gifts: [["2026-06-15", 100]] },
+  { name: "Billie", gifts: [["2026-06-16", 25]] },
+  { name: "Darla", gifts: [["2026-06-20", 50], ["2026-07-10", 40]] },
+  { name: "Dave", gifts: [["2026-06-25", 200]] },
+  { name: "Brenda", gifts: [["2026-07-05", 25]] },
+  { name: "Heather", gifts: [["2026-07-10", 30], ["2026-07-13", 20], ["2026-07-13", 200], ["2026-07-21", 10], ["2026-07-27", 20]] },
+  { name: "Joelle", gifts: [["2026-07-13", 250]] },
+  { name: "Brett", gifts: [["2026-07-15", 50]] },
+  { name: "Aziz", gifts: [["2026-07-22", 180], ["2026-08-15", 50]] },
+  { name: "Cammi", gifts: [["2026-07-25", 50]] },
+  { name: "Red", gifts: [["2026-07-31", 50]] },
+  { name: "Kathy", gifts: [["2026-08-09", 100]] },
+  { name: "Marialuz", gifts: [["2026-08-11", 200]] },
+  { name: "Paul", gifts: [["2026-08-15", 50]] },
+  { name: "Jean-Claude", gifts: [["2026-08-17", 100]] },
+  { name: "Eric", gifts: [["2026-08-18", 20]] }
 ];
 
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -51,7 +56,7 @@ const toast = document.querySelector(".toast");
 function renderCampaign() {
   document.querySelectorAll("[data-raised]").forEach(el => el.textContent = money.format(campaign.raised));
   document.querySelectorAll("[data-goal]").forEach(el => el.textContent = money.format(campaign.goal));
-  const supporterLabel = campaign.donors > 0 ? `${campaign.donors.toLocaleString()} financial supporter${campaign.donors === 1 ? "" : "s"}` : "";
+  const supporterLabel = campaign.donors > 0 ? `${campaign.donors.toLocaleString()} supporter${campaign.donors === 1 ? "" : "s"}` : "";
   document.querySelectorAll("[data-supporter-label]").forEach(el => {
     el.textContent = supporterLabel;
     if (!supporterLabel) el.hidden = true;
@@ -87,12 +92,12 @@ function renderSupporters() {
   const dateFormat = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
   const contributions = supporters
     .flatMap((supporter, supporterOrder) => supporter.gifts.map(([date, amount], giftOrder) => ({
-      initials: supporter.initials, date, amount, supporterOrder, giftOrder
+      name: supporter.name, date, amount, supporterOrder, giftOrder
     })))
     .sort((a, b) => a.date.localeCompare(b.date) || a.supporterOrder - b.supporterOrder || a.giftOrder - b.giftOrder);
   const cards = contributions.map(contribution => {
     return `<article class="supporter-card">
-      <span class="supporter-initials">${contribution.initials}</span>
+      <span class="supporter-initials">${contribution.name}</span>
       <div class="supporter-gift"><strong>${money.format(contribution.amount)}</strong><time datetime="${contribution.date}">${dateFormat.format(new Date(`${contribution.date}T00:00:00Z`))}</time></div>
     </article>`;
   }).join("");

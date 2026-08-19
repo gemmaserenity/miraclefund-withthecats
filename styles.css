@@ -36,9 +36,9 @@ img { display: block; max-width: 100%; }
 .deadline-strip span { color: #ffe2dc; }
 .brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 700; letter-spacing: -.02em; }
 .brand img { width: auto; height: 40px; object-fit: contain; }
-nav { display: flex; align-items: center; gap: 28px; margin-left: auto; }
-nav a, .footer-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; }
-nav a:hover, .footer-links a:hover { color: var(--green); }
+.site-header nav { display: flex; align-items: center; gap: 28px; margin-left: auto; }
+.site-header nav a, .footer-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; }
+.site-header nav a:hover, .footer-links a:hover { color: var(--green); }
 
 .button { min-height: 50px; padding: 0 24px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 999px; cursor: pointer; font-weight: 700; transition: transform .18s, background .18s, box-shadow .18s; }
 .button, .document-card strong { text-transform: uppercase; }
@@ -337,7 +337,7 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 }
 
 @media (max-width: 900px) {
-  nav { display: none; }
+  .site-header nav { display: none; }
   .campaign-layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .donation-card { display: none; }
   .mobile-summary { display: block; margin: -23px 16px 20px; position: relative; padding: 20px; border: 1px solid var(--line); border-radius: 15px; background: var(--white); box-shadow: 0 9px 28px rgba(32,39,34,.1); }
@@ -402,4 +402,269 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
   .transparency,
   .closing-donation,
   .final-message { margin-inline: 0; }
+}
+
+/* Poster 3 campaign system — canonical Canva palette supplied August 2026. */
+:root {
+  --campaign-ivory: #FFF1E0;
+  --campaign-orange: #F27405;
+  --campaign-blue: #3357B8;
+  --campaign-charcoal: #222222;
+  --campaign-panel: #FFFBF6;
+  --campaign-navy: var(--campaign-blue);
+  --campaign-burgundy: var(--campaign-orange);
+  --campaign-gold: var(--campaign-orange);
+  --ink: var(--campaign-charcoal);
+  --muted: #5f5a55;
+  --paper: var(--campaign-ivory);
+  --white: var(--campaign-panel);
+  --line: rgba(51, 87, 184, .20);
+  --green: var(--campaign-blue);
+  --green-dark: #244797;
+  --green-soft: #edf2ff;
+  --amber: var(--campaign-orange);
+  --shadow: 0 16px 40px rgba(51, 87, 184, .12);
+}
+
+body {
+  background: var(--campaign-ivory);
+  font-family: "TT Commons Pro", "DM Sans", Arial, sans-serif;
+}
+
+h1, h2, h3,
+.amount-line strong,
+.sidebar-milestone strong,
+.budget-row b,
+.budget-total strong,
+.milestone-callout strong,
+.storyline-map strong,
+.storyline-map b {
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+h1, h2, h3 { text-transform: uppercase; }
+h2 { color: var(--campaign-blue); font-size: clamp(40px, 5vw, 58px); line-height: .98; }
+h3 { color: var(--campaign-orange); font-size: 28px; }
+
+.site-header {
+  border-bottom-color: rgba(51, 87, 184, .18);
+  background: rgba(255, 241, 224, .94);
+}
+.brand { color: var(--campaign-blue); }
+.brand span { font-family: "Bebas Neue", Impact, sans-serif; font-size: 25px; letter-spacing: .04em; text-transform: uppercase; }
+.site-header nav a, .footer-links a { color: #3e4966; }
+.site-header nav a:hover, .footer-links a:hover { color: var(--campaign-orange); }
+.deadline-strip { background: var(--campaign-blue); }
+.deadline-strip span { color: #fff3e4; }
+
+.button { border-radius: 8px; font-weight: 800; letter-spacing: .02em; }
+.button-primary { background: var(--campaign-orange); box-shadow: 0 8px 22px rgba(242, 116, 5, .22); }
+.button-primary:hover { background: #d96500; box-shadow: 0 10px 26px rgba(242, 116, 5, .28); }
+.button-outline { color: var(--campaign-blue); border: 2px solid var(--campaign-blue); background: var(--campaign-panel); }
+.button-outline:hover { color: white; border-color: var(--campaign-blue); background: var(--campaign-blue); }
+.button:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline-color: var(--campaign-orange); }
+
+.hero {
+  padding: 68px 0 78px;
+  color: var(--campaign-charcoal);
+  background: var(--campaign-ivory);
+  border-bottom: 14px solid var(--campaign-blue);
+}
+.hero-grid { gap: 58px; }
+.hero-copy h1 {
+  color: var(--campaign-blue);
+  font-size: clamp(58px, 7.2vw, 96px);
+  line-height: .92;
+}
+.hero-copy .eyebrow { color: var(--campaign-orange); font-size: 15px; }
+.hero-copy > p { color: var(--campaign-charcoal); font-size: 18px; }
+.hero-copy > p strong { color: var(--campaign-blue); }
+.hero-media { padding: 10px; border: 3px solid var(--campaign-orange); border-radius: 4px; background: var(--campaign-panel); }
+.hero-media img { border-radius: 0; }
+.hero .donation-card { border: 3px solid var(--campaign-blue); border-radius: 4px; background: var(--campaign-panel); box-shadow: 12px 12px 0 rgba(51, 87, 184, .14); }
+.hero .deadline-chip { color: white; background: var(--campaign-orange); border-radius: 3px; }
+.progress { height: 13px; background: #f3dec8; }
+.progress-fill { background: linear-gradient(90deg, var(--campaign-orange), #ff9c32); }
+.sidebar-milestone { color: var(--campaign-blue); background: #edf2ff; }
+.quick-gifts button, .amount-chips button { border: 2px solid rgba(51, 87, 184, .22); background: var(--campaign-panel); }
+.quick-gifts button:hover, .amount-chips button:hover { border-color: var(--campaign-orange); color: #a84d00; background: #fff0df; }
+
+.story-video { border: 8px solid var(--campaign-blue); border-radius: 4px; background: var(--campaign-blue); box-shadow: 12px 12px 0 rgba(242, 116, 5, .18); }
+.story-video figcaption { background: var(--campaign-blue); }
+.hero-video-cta p { color: var(--campaign-charcoal); }
+.button-inverted { color: var(--campaign-blue); border-color: var(--campaign-blue); background: var(--campaign-panel); box-shadow: none; }
+.button-inverted:hover { color: white; background: var(--campaign-blue); }
+
+.supporter-carousel { background: var(--campaign-panel); border-bottom: 1px solid rgba(51, 87, 184, .18); }
+.supporter-intro h2 { color: var(--campaign-blue); }
+.supporter-intro .historical-support-note { margin: 24px 0 30px; padding: 22px 24px; border-left: 7px solid var(--campaign-orange); color: var(--campaign-charcoal); background: var(--campaign-ivory); }
+.historical-support-note strong, .historical-support-note span { display: block; }
+.historical-support-note strong { color: var(--campaign-blue); font-family: "Bebas Neue", Impact, sans-serif; font-size: 30px; letter-spacing: .02em; line-height: 1; text-transform: uppercase; }
+.historical-support-note span { margin-top: 9px; color: var(--campaign-charcoal); font-size: 15px; line-height: 1.55; }
+.supporter-card { border-radius: 4px; border-width: 2px; box-shadow: 7px 7px 0 rgba(242, 116, 5, .10); }
+.supporter-card:nth-child(even) { box-shadow: 7px 7px 0 rgba(51, 87, 184, .12); }
+.supporter-initials { color: white; background: var(--campaign-orange); border-radius: 3px; }
+.supporter-card:nth-child(even) .supporter-initials { background: var(--campaign-blue); }
+.supporter-gift strong { color: var(--campaign-blue); }
+
+.storyline-map { display: block; margin-inline: auto; padding-block: 74px 32px; }
+.storyline-kicker { margin: 0 0 8px; color: var(--campaign-orange); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.storyline-map > h2 { max-width: 780px; margin-bottom: 30px; }
+.storyline-grid { display: grid; gap: 8px; }
+.storyline-grid a {
+  min-height: 104px;
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid rgba(51, 87, 184, .14);
+  border-radius: 5px;
+  color: inherit;
+  background: var(--campaign-panel);
+  text-decoration: none;
+  transition: transform .18s, box-shadow .18s;
+}
+.storyline-grid a:hover { transform: translateX(5px); box-shadow: var(--shadow); }
+.storyline-icon { display: grid; place-items: center; color: white; background: var(--campaign-orange); font-family: "Bebas Neue", Impact, sans-serif; font-size: 52px; }
+.storyline-grid a:nth-child(even) .storyline-icon { background: var(--campaign-blue); }
+.storyline-grid a > span:last-child { display: grid; grid-template-columns: 52px minmax(190px, .7fr) 1fr; gap: 18px; align-items: center; padding: 18px 26px; }
+.storyline-grid b { color: var(--campaign-orange); font-size: 28px; }
+.storyline-grid a:nth-child(even) b { color: var(--campaign-blue); }
+.storyline-grid strong { color: var(--campaign-blue); font-size: 31px; line-height: 1; text-transform: uppercase; }
+.storyline-grid a:nth-child(odd) strong { color: var(--campaign-orange); }
+.storyline-grid small { padding-left: 22px; border-left: 2px solid rgba(34,34,34,.12); font-size: 16px; font-style: italic; line-height: 1.45; }
+
+.story-shell { padding-top: 34px; }
+.story { max-width: 920px; counter-reset: campaign-section; }
+.story > section {
+  position: relative;
+  margin-top: 34px;
+  padding: 46px 52px 48px 150px;
+  border: 1px solid rgba(51, 87, 184, .14);
+  border-top: 1px solid rgba(51, 87, 184, .14);
+  border-radius: 5px;
+  background: var(--campaign-panel);
+  box-shadow: 8px 8px 0 rgba(51, 87, 184, .08);
+  counter-increment: campaign-section;
+}
+.story > section:nth-child(even) { box-shadow: 8px 8px 0 rgba(242, 116, 5, .10); }
+.story > section::before {
+  content: counter(campaign-section, decimal-leading-zero);
+  position: absolute;
+  top: 46px;
+  left: 34px;
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  color: white;
+  background: var(--campaign-orange);
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: 38px;
+}
+.story > section:nth-child(even)::before { background: var(--campaign-blue); }
+.story > section .section-label { color: var(--campaign-orange); font-size: 13px; }
+.story > section:nth-child(even) .section-label { color: var(--campaign-blue); }
+.story > section h2 { color: var(--campaign-blue); }
+.story > section:nth-child(even) h2 { color: var(--campaign-orange); }
+.story p, .story li { font-size: 17px; line-height: 1.72; }
+
+.medical-role, .media, .transparency, .closing-donation, .final-message {
+  margin-inline: 0;
+  color: var(--campaign-charcoal);
+  background: var(--campaign-panel);
+}
+.medical-role p, .medical-role li, .closing-donation p, .closing-donation .amount-line span { color: var(--campaign-charcoal); }
+.medical-role .section-label { color: var(--campaign-orange); }
+.medical-role li::before { color: var(--campaign-orange); }
+.document-card { border: 2px solid var(--campaign-blue); color: var(--campaign-blue); background: #edf2ff; }
+.document-icon { color: white; background: var(--campaign-orange); }
+.document-card small { color: #4d5b80; }
+
+.budget-list { border-radius: 5px; border: 2px solid var(--campaign-blue); }
+.budget-row.featured { background: #edf2ff; }
+.budget-row:nth-child(odd) b { color: var(--campaign-orange); }
+.budget-row:nth-child(even) b { color: var(--campaign-blue); }
+.budget-total { background: var(--campaign-blue); }
+.milestone-callout { border: 3px solid var(--campaign-orange); border-radius: 4px; background: #fff0df; }
+.milestone-callout span { color: #a74b00; }
+.milestone-callout strong { color: var(--campaign-orange); }
+
+.help-step { padding: 28px; border: 2px solid rgba(51, 87, 184, .18); border-radius: 4px; background: var(--campaign-panel); }
+.help-step:nth-of-type(odd) { border-color: rgba(242, 116, 5, .28); }
+.help-step h3 { color: var(--campaign-blue); font-size: 38px; }
+.help-step:nth-of-type(odd) h3 { color: var(--campaign-orange); }
+.share-grid button, .share-grid a { border-radius: 4px; }
+
+.update-card, .organizer-card { border: 2px solid var(--campaign-blue); border-radius: 4px; background: var(--campaign-panel); box-shadow: 8px 8px 0 rgba(242, 116, 5, .11); }
+.avatar { color: white; border-color: var(--campaign-orange); background: var(--campaign-orange); }
+.organizer-card a { color: var(--campaign-orange); }
+.closing-donation { border: 4px solid var(--campaign-blue); }
+.closing-donation h2 { color: var(--campaign-blue); }
+.final-message { border-bottom: 10px solid var(--campaign-orange); }
+
+.contact-section { background: var(--campaign-blue); }
+.contact-details h2, .contact-details address strong { color: white; }
+.contact-details .section-label { color: #ffd8ae; }
+.contact-details > p:not(.section-label), .contact-details address span { color: #f4f6ff; }
+.contact-details address a { color: #ffd8ae; }
+.contact-map { border: 4px solid var(--campaign-orange); border-radius: 4px; }
+.contact-map-link { color: var(--campaign-blue); background: var(--campaign-panel); }
+.site-footer { background: #244797; border-top: 12px solid var(--campaign-orange); }
+.site-footer .button-primary { background: var(--campaign-orange); }
+.mobile-donate-bar { border-top: 3px solid var(--campaign-blue); background: rgba(255, 241, 224, .97); }
+
+.donate-dialog, .support-dialog { border-radius: 5px; background: var(--campaign-ivory); }
+.dialog-head { background: #edf2ff; border-bottom: 5px solid var(--campaign-orange); }
+.dialog-head h2 { color: var(--campaign-blue); }
+.payment-option { border-radius: 4px; }
+.payment-icon { color: white; background: var(--campaign-blue); border-radius: 3px; }
+.support-option .payment-icon { color: white; background: var(--campaign-orange); }
+
+.urgent-priority {
+  max-width: 720px;
+  margin: 28px 0 38px;
+  padding: 24px 28px;
+  border: 3px solid var(--campaign-orange);
+  border-radius: 4px;
+  background: var(--campaign-panel);
+  box-shadow: 8px 8px 0 rgba(51, 87, 184, .14);
+}
+.urgent-priority span, .mortgage-priority span { display: block; color: var(--campaign-blue); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.urgent-priority strong { display: block; margin-top: 2px; color: var(--campaign-orange); font-family: "Bebas Neue", Impact, sans-serif; font-size: 46px; line-height: 1; text-transform: uppercase; }
+.urgent-priority p { margin: 10px 0 0; color: var(--campaign-charcoal); font-size: 16px; line-height: 1.5; }
+.mortgage-priority { margin: 0 0 18px; padding: 15px; border: 2px solid var(--campaign-orange); border-radius: 4px; background: #fff0df; }
+.mortgage-priority strong { display: block; margin-top: 2px; color: var(--campaign-orange); font-family: "Bebas Neue", Impact, sans-serif; font-size: 38px; line-height: 1; }
+.mortgage-priority small { display: block; margin-top: 5px; color: var(--muted); line-height: 1.35; }
+.supporter-initials { width: auto; min-width: 58px; padding-inline: 10px; border-radius: 999px; }
+.update-card + .update-card { margin-top: 24px; }
+.update-card-current { border-color: var(--campaign-orange); box-shadow: 8px 8px 0 rgba(51, 87, 184, .11); }
+.update-card-current h3 { color: var(--campaign-orange); font-size: 38px; }
+
+@media (max-width: 760px) {
+  .storyline-grid a { grid-template-columns: 82px 1fr; }
+  .storyline-grid a > span:last-child { grid-template-columns: 42px 1fr; gap: 10px 14px; padding: 16px 18px; }
+  .storyline-grid small { grid-column: 2; padding: 8px 0 0; border-top: 1px solid rgba(34,34,34,.12); border-left: 0; }
+  .storyline-icon { font-size: 40px; }
+  .story > section { padding: 116px 28px 36px; }
+  .story > section::before { top: 24px; left: 28px; width: 68px; height: 68px; }
+}
+
+@media (max-width: 620px) {
+  .hero { padding-block: 46px 56px; border-bottom-width: 9px; }
+  .hero-copy h1 { font-size: clamp(58px, 18vw, 82px); overflow-wrap: normal; }
+  .hero-copy > p { font-size: 17px; }
+  .story-video { border-width: 5px; box-shadow: 7px 7px 0 rgba(242, 116, 5, .18); }
+  .storyline-map { padding-block: 54px 20px; }
+  .storyline-grid a { grid-template-columns: 64px 1fr; }
+  .storyline-grid a > span:last-child { grid-template-columns: 34px 1fr; padding: 14px; }
+  .storyline-grid strong { font-size: 26px; }
+  .storyline-grid b { font-size: 24px; }
+  .storyline-grid small { font-size: 14px; }
+  .story > section { margin-inline: 0; border-radius: 4px; }
+  .medical-role, .media, .transparency, .closing-donation, .final-message { padding-inline: 28px; }
+  .contact-section { padding-block: 58px; }
 }
