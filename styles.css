@@ -237,7 +237,27 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 .hero-copy .eyebrow { color: #e0c98f; }
 .hero-copy .button { margin-top: 14px; }
 .organizer-byline { margin-top: 22px; font-size: 14px !important; }
-.hero-visual { position: sticky; top: 96px; min-width: 0; }
+.hero-visual {
+  position: sticky;
+  top: 112px;
+  min-width: 0;
+  max-height: calc(100vh - 128px);
+  max-height: calc(100dvh - 128px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--campaign-orange) rgba(255,255,255,.14);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  padding: 0 10px 10px 0;
+}
+.hero-visual::-webkit-scrollbar { width: 9px; }
+.hero-visual::-webkit-scrollbar-track { background: rgba(255,255,255,.14); }
+.hero-visual::-webkit-scrollbar-thumb { border-radius: 99px; background: var(--campaign-orange); }
+.hero-visual .donation-card { order: 1; }
+.hero-visual .hero-media { order: 2; margin-bottom: 0; }
 .hero-media { margin-bottom: 22px; background: #101a2b; }
 .hero-media img { aspect-ratio: 1 / 1; object-fit: cover; object-position: 44% 50%; }
 .hero-media figcaption { color: #d9d3ca; background: #101a2b; }
@@ -302,7 +322,7 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .hero-visual { position: static; }
+  .hero-visual { position: static; max-height: none; overflow: visible; scrollbar-gutter: auto; padding: 0; }
   .hero .donation-card { display: block; }
   .story { max-width: 720px; }
   .contact-grid { grid-template-columns: 1fr; }
