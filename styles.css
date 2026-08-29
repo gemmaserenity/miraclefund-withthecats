@@ -326,7 +326,7 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
   .share-grid { grid-template-columns: 1fr; }
   .site-footer .footer-inner { align-items: flex-start; }
   .site-footer .button { width: 100%; }
-  .mobile-donate-bar { display: grid; }
+  .mobile-donate-bar { position: fixed; z-index: 18; right: 0; bottom: 0; left: 0; display: grid; padding: 10px 16px max(10px, env(safe-area-inset-bottom)); border-top: 3px solid var(--campaign-blue); background: rgba(255, 241, 224, .97); backdrop-filter: blur(12px); }
   .mobile-donate-bar .button { min-width: 0; padding-inline: 12px; }
   .practical-support-button { margin-inline: 22px; }
 }
@@ -536,8 +536,15 @@ h3 { color: var(--campaign-orange); font-size: 28px; }
 .storyline-grid a:nth-child(odd) strong { color: var(--campaign-orange); }
 .storyline-grid small { padding-left: 22px; border-left: 2px solid rgba(34,34,34,.12); font-size: 16px; font-style: italic; line-height: 1.45; }
 
-.story-shell { padding-top: 34px; }
-.story { max-width: 920px; counter-reset: campaign-section; }
+.story-shell { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 34px; align-items: start; padding-top: 34px; }
+.story { width: 100%; max-width: none; margin-inline: 0; counter-reset: campaign-section; }
+.story-donation-rail { position: sticky; top: 112px; align-self: start; padding-top: 34px; }
+.story-donation-card { padding: 24px; border: 3px solid var(--campaign-blue); border-radius: 4px; background: var(--campaign-panel); box-shadow: 9px 9px 0 rgba(242, 116, 5, .16); }
+.story-donation-kicker { margin: 0 0 8px; color: var(--campaign-orange); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.story-donation-card h2 { margin-bottom: 18px; font-size: 38px; line-height: .95; }
+.story-donation-card .mortgage-priority { margin-bottom: 16px; padding: 13px; }
+.story-donation-card .mortgage-priority strong { font-size: 32px; }
+.story-donation-card .button-outline { margin-top: 10px; }
 .story > section {
   position: relative;
   margin-top: 34px;
@@ -677,6 +684,14 @@ h3 { color: var(--campaign-orange); font-size: 28px; }
   .story > section { padding: 116px 28px 36px; }
   .story > section::before { top: 24px; left: 28px; width: 68px; height: 68px; }
   .campaign-follow-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 900px) {
+  .story-shell { display: block; }
+  .story { max-width: 720px; margin-inline: auto; }
+  .story-donation-rail { display: none; }
+  .mobile-donate-bar { position: fixed; z-index: 18; right: 0; bottom: 0; left: 0; display: grid; padding: 10px 16px max(10px, env(safe-area-inset-bottom)); border-top: 3px solid var(--campaign-blue); background: rgba(255, 241, 224, .97); backdrop-filter: blur(12px); }
+  .site-footer { padding-bottom: 80px; }
 }
 
 @media (max-width: 620px) {
