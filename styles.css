@@ -636,13 +636,38 @@ h3 { color: var(--campaign-orange); font-size: 28px; }
 .urgent-priority span, .mortgage-priority span { display: block; color: var(--campaign-blue); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .urgent-priority strong { display: block; margin-top: 2px; color: var(--campaign-orange); font-family: "Bebas Neue", Impact, sans-serif; font-size: 46px; line-height: 1; text-transform: uppercase; }
 .urgent-priority p { margin: 10px 0 0; color: var(--campaign-charcoal); font-size: 16px; line-height: 1.5; }
+.complete-goal { margin-top: 20px; padding-top: 18px; border-top: 2px solid rgba(51, 87, 184, .22); }
+.urgent-priority .complete-goal span { color: var(--campaign-blue); }
+.urgent-priority .complete-goal strong { color: var(--campaign-blue); font-size: 38px; }
+.urgent-priority .complete-goal p { margin-top: 7px; font-size: 15px; }
+.mortgage-sprint-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; margin-top: 18px; padding: 17px; border: 1px solid rgba(51, 87, 184, .2); background: #fff7ec; }
+.mortgage-sprint-summary > div:not(.mortgage-sprint-progress) { min-width: 0; }
+.mortgage-sprint-summary > div > span { color: var(--muted); font-size: 10px; }
+.urgent-priority .mortgage-sprint-summary > div > strong { margin-top: 4px; font-size: 28px; }
+.mortgage-sprint-progress { grid-column: 1 / -1; margin-top: 2px; }
+.mortgage-sprint-summary > small { grid-column: 1 / -1; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .mortgage-priority { margin: 0 0 18px; padding: 15px; border: 2px solid var(--campaign-orange); border-radius: 4px; background: #fff0df; }
 .mortgage-priority strong { display: block; margin-top: 2px; color: var(--campaign-orange); font-family: "Bebas Neue", Impact, sans-serif; font-size: 38px; line-height: 1; }
 .mortgage-priority small { display: block; margin-top: 5px; color: var(--muted); line-height: 1.35; }
+.other-giving-button { width: 100%; margin-top: 9px; padding: 10px 12px; border: 0; color: var(--campaign-blue); background: transparent; cursor: pointer; font-size: 13px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.other-giving-button:hover { color: var(--campaign-orange); }
 .supporter-initials { width: auto; min-width: 58px; padding-inline: 10px; border-radius: 999px; }
 .update-card + .update-card { margin-top: 24px; }
 .update-card-current { border-color: var(--campaign-orange); box-shadow: 8px 8px 0 rgba(51, 87, 184, .11); }
 .update-card-current h3 { color: var(--campaign-orange); font-size: 38px; }
+
+.campaign-follow { padding: 52px 0; color: white; background: var(--campaign-blue); border-bottom: 10px solid var(--campaign-orange); }
+.campaign-follow-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(420px, 1.15fr); gap: 54px; align-items: center; }
+.campaign-follow .section-label { color: #ffd8ae; }
+.campaign-follow h2 { max-width: 620px; margin-bottom: 14px; color: white; }
+.campaign-follow p { max-width: 660px; margin: 0; color: #f4f6ff; font-size: 16px; line-height: 1.65; }
+.campaign-follow-form { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 14px; padding: 24px; color: var(--campaign-charcoal); background: var(--campaign-panel); box-shadow: 8px 8px 0 rgba(242, 116, 5, .3); }
+.campaign-follow-form > label:not(.campaign-follow-consent):not(.form-honeypot) { display: grid; gap: 7px; color: var(--campaign-blue); font-size: 12px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.campaign-follow-form input:not([type="checkbox"]) { width: 100%; min-width: 0; height: 48px; padding: 0 12px; border: 1px solid rgba(51, 87, 184, .35); color: var(--campaign-charcoal); background: white; }
+.campaign-follow-consent { grid-column: 1 / -1; display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.4; }
+.campaign-follow-consent input { width: 18px; height: 18px; flex: 0 0 auto; margin-top: 1px; accent-color: var(--campaign-blue); }
+.campaign-follow-form .button { width: fit-content; }
+.campaign-follow-status { align-self: center; color: var(--campaign-charcoal); font-size: 13px; line-height: 1.45; }
 
 @media (max-width: 760px) {
   .storyline-grid a { grid-template-columns: 82px 1fr; }
@@ -651,6 +676,7 @@ h3 { color: var(--campaign-orange); font-size: 28px; }
   .storyline-icon { font-size: 40px; }
   .story > section { padding: 116px 28px 36px; }
   .story > section::before { top: 24px; left: 28px; width: 68px; height: 68px; }
+  .campaign-follow-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 
 @media (max-width: 620px) {
@@ -666,5 +692,10 @@ h3 { color: var(--campaign-orange); font-size: 28px; }
   .storyline-grid small { font-size: 14px; }
   .story > section { margin-inline: 0; border-radius: 4px; }
   .medical-role, .media, .transparency, .closing-donation, .final-message { padding-inline: 28px; }
+  .mortgage-sprint-summary, .campaign-follow-form { grid-template-columns: 1fr; }
+  .mortgage-sprint-summary > *, .campaign-follow-form > * { grid-column: 1; }
+  .campaign-follow { padding-block: 42px; }
+  .campaign-follow-form { padding: 20px; }
+  .campaign-follow-form .button { width: 100%; }
   .contact-section { padding-block: 58px; }
 }

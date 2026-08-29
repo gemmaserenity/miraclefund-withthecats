@@ -1,13 +1,13 @@
 # Donation Ledger
 
 Source: `WINWIN HELP outreach` personal gift tracker  
-Prepared: August 18, 2026
+Prepared: August 28, 2026
 
 ## Summary
 
-- Valid contributions: **45**
+- Valid contributions: **47**
 - Unique contributors: **25**
-- Total recorded value: **$6,145**
+- Total recorded value: **$6,275.23**
 - The total includes cash, gift cards, goods, transportation, and other in-kind support at their recorded values.
 - Test transactions are excluded from this ledger and from the campaign total.
 
@@ -45,7 +45,7 @@ Prepared: August 18, 2026
 | July 13, 2026 | Joelle | $250 | Goods / in-kind | Food from a freezer, refrigerator, and pantry, plus household cleaning supplies. |
 | July 15, 2026 | Brett | $50 | Transportation and networking / in-kind | Drove the recipient to Maricopa Food Pantry and contacted professional connections to help find AI-business clients. |
 | July 21, 2026 | Heather | $10 | Zelle | Grocery assistance. |
-| July 22, 2026 | Aziz | $180 | PayPal | Paid two months of Cox Internet service. |
+| July 21, 2026 | Azizul | $180.23 | PayPal | Paid Cox Phoenix for Internet service and prevented suspension. |
 | July 25, 2026 | Cammi | $50 | Cash and transportation | Provided a $50 bill and transportation to Desert Financial and Maricopa Food Pantry. |
 | July 27, 2026 | Heather | $20 | Zelle | Grocery assistance. |
 | July 30, 2026 | Dan | $200 | Venmo | General support, sent with the message “I hope it helps.” |
@@ -56,9 +56,11 @@ Prepared: August 18, 2026
 | August 9, 2026 | Kathy | $100 | Venmo | Groceries |
 | August 11, 2026 | Marialuz | $200 | PayPal | transportation, notary, and recording the memorandum |
 | August 14, 2026 | Regina | $50 | CashApp | Help |
-| August 15, 2026 | Aziz | $50 | PayPal | Help |
+| August 14, 2026 | Azizul | $50 | PayPal cash gift | Help during the crisis. |
 | August 15, 2026 | Paul | $50 | in-kind groceries delivered | transportation to Maricopa Food Pantry, and groceries delivered |
 | August 17, 2026 | Jean-Claude | $100 | Stripe | Help with the campaign |
 | August 18, 2026 | Eric | $20 | Venmo | Sending your love |
+| August 25, 2026 | Brenda | $50 | Groceries | Grocery assistance. |
+| August 26, 2026 | Azizul | $80 | PayPal cash gift | Help during the crisis; used for AI API access and purchasing the PSI Health and Life licensing examination as a step toward future income. |
 
-**Total: 45 contributions with a recorded value of $6,145 from 25 donors**
+**Total: 47 contributions with a recorded value of $6,275.23 from 25 donors**

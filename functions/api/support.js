@@ -29,6 +29,8 @@ const validRecognition = new Set([
   "Keep my support private."
 ]);
 
+const attributionKeys = new Set(["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "ref"]);
+
 export async function onRequestPost({ request, env }) {
   if (!env.RESEND_API_KEY) return json({ error: "Messaging is temporarily unavailable." }, 503);
 
@@ -48,6 +50,8 @@ export async function onRequestPost({ request, env }) {
   const email = String(body.email || "").trim();
   const recognition = String(body.recognition || "");
   const estimateNumber = body.estimate === "" ? null : Number(body.estimate);
+  const attribution = Object.fromEntries(Object.entries(body.attribution || {})
+    .filter(([key, value]) => attributionKeys.has(key) && typeof value === "string" && value.length <= 160));
 
   if (!validTypes.has(type) || !validRecognition.has(recognition) || description.length < 3 || description.length > 5000) {
     return json({ error: "Please check the message details and try again." }, 400);
@@ -68,7 +72,9 @@ export async function onRequestPost({ request, env }) {
     ["Offer", description],
     ["Name", name || "Not provided"],
     ["Reply email", email || "Not provided"],
-    ["Recognition preference", recognition]
+    ["Recognition preference", recognition],
+    ["Campaign source", attribution.utm_source || attribution.ref || "Direct"],
+    ["Campaign link", Object.entries(attribution).map(([key, value]) => `${key}=${value}`).join("; ") || "No attribution parameters"]
   ];
   const html = fields.map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong><br>${escapeHtml(value).replaceAll("\n", "<br>")}</p>`).join("");
   const payload = {
@@ -89,10 +95,11 @@ export async function onRequestPost({ request, env }) {
   });
 
   if (!resendResponse.ok) {
-    console.error("Resend rejected support message", resendResponse.status, await resendResponse.text());
+    console.error(JSON.stringify({ event: "support_message_rejected", status: resendResponse.status }));
     return json({ error: "Your message could not be delivered. Please try again." }, 502);
   }
 
+  console.log(JSON.stringify({ event: "support_message_sent", type, source: attribution.utm_source || attribution.ref || "direct" }));
   return json({ ok: true });
 }
 
