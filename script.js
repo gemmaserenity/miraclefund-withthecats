@@ -363,6 +363,39 @@ document.addEventListener("click", event => {
   }
 });
 
+const heroVisual = document.querySelector(".hero-visual");
+if (heroVisual) {
+  heroVisual.addEventListener("wheel", event => {
+    if (!window.matchMedia("(min-width: 901px)").matches || !event.deltaY) return;
+
+    const maxScroll = heroVisual.scrollHeight - heroVisual.clientHeight;
+    const canScrollUp = event.deltaY < 0 && heroVisual.scrollTop > 0;
+    const canScrollDown = event.deltaY > 0 && heroVisual.scrollTop < maxScroll - 1;
+    if (!canScrollUp && !canScrollDown) return;
+
+    event.preventDefault();
+    heroVisual.scrollTop = Math.max(0, Math.min(maxScroll, heroVisual.scrollTop + event.deltaY));
+  }, { passive: false });
+
+  heroVisual.addEventListener("keydown", event => {
+    if (!window.matchMedia("(min-width: 901px)").matches) return;
+
+    const scrollSteps = {
+      ArrowDown: 52,
+      ArrowUp: -52,
+      PageDown: heroVisual.clientHeight * .85,
+      PageUp: heroVisual.clientHeight * -.85,
+      Home: -heroVisual.scrollHeight,
+      End: heroVisual.scrollHeight
+    };
+    const amount = scrollSteps[event.key];
+    if (amount === undefined) return;
+
+    event.preventDefault();
+    heroVisual.scrollBy({ top: amount, behavior: "smooth" });
+  });
+}
+
 renderCampaign();
 renderSupporters();
 renderPaymentOptions();
