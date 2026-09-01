@@ -13,7 +13,7 @@ window.MIRACLE_FUND_CAMPAIGN = Object.freeze({
     raised: 0,
     goal: 8106.17,
     deadlineLabel: "September 4, 2026",
-    asOfLabel: "August 28, 2026",
+    asOfLabel: "August 31, 2026",
     note: "The August 18 written amount was $8,028.12. A new $78.05 late fee increased the current exact target to $8,106.17."
   }),
   amazonWishlist: "https://www.amazon.com/hz/wishlist/ls/31DEZVLJU2LGI?ref_=wl_share",
