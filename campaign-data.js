@@ -1,16 +1,16 @@
 // Miracle Fund campaign facts used by the website and campaign content.
 // Update verified figures here first so every dynamic display stays aligned.
 window.MIRACLE_FUND_CAMPAIGN = Object.freeze({
-  historicalSupport: 6365.23,
+  historicalSupport: 6415.23,
   longTermGoal: 500000,
   stabilizationGoal: 25000,
-  donors: 29,
+  donors: 30,
   launched: "2026-08-04",
   organizerEmail: "home@withthecats.org",
   campaignUrl: "https://miraclefund.withthecats.org/",
   moveOutDeadline: "2026-09-01T06:59:00Z",
   mortgageSprint: Object.freeze({
-    raised: 90,
+    raised: 140,
     goal: 8106.17,
     deadlineLabel: "September 4, 2026",
     asOfLabel: "September 1, 2026",

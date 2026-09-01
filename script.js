@@ -28,7 +28,8 @@ const supporters = [
   { name: "Paul", gifts: [["2026-08-15", 50]] },
   { name: "Jean-Claude", gifts: [["2026-08-17", 100]] },
   { name: "Eric", gifts: [["2026-08-18", 20]] },
-  { name: "Jenny", gifts: [["2026-08-31", 50]] }
+  { name: "Jenny", gifts: [["2026-08-31", 50]] },
+  { name: "Brian", gifts: [["2026-09-01", 50]] }
 ];
 
 const inKindSupport = [
