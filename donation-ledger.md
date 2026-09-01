@@ -1,14 +1,15 @@
 # Donation Ledger
 
 Source: `WINWIN HELP outreach` personal gift tracker  
-Prepared: August 28, 2026
+Updated: September 1, 2026
 
 ## Summary
 
-- Valid contributions: **47**
-- Unique contributors: **25**
-- Total recorded value: **$6,275.23**
+- Valid support entries: **52**
+- Unique contributors: **29**
+- Total recorded value: **$6,365.23**
 - The total includes cash, gift cards, goods, transportation, and other in-kind support at their recorded values.
+- Three recent in-kind contributions have no assigned dollar value and are excluded from the recorded-value total.
 - Test transactions are excluded from this ledger and from the campaign total.
 
 ## Contributions
@@ -62,5 +63,10 @@ Prepared: August 28, 2026
 | August 18, 2026 | Eric | $20 | Venmo | Sending your love |
 | August 25, 2026 | Brenda | $50 | Groceries | Grocery assistance. |
 | August 26, 2026 | Azizul | $80 | PayPal cash gift | Help during the crisis; used for AI API access and purchasing the PSI Health and Life licensing examination as a step toward future income. |
+| August 30, 2026 | Lisa | $40 | Donation | Cash donation; payment method not specified. |
+| August 31, 2026 | Jenny | $50 | PayPal | Cash donation. |
+| Date not specified | Victor | Not valued | Transportation / in-kind | Provided a car trip. |
+| August 31, 2026 | Shannon | Not valued | Cat food / in-kind | Donated cat food. |
+| September 1, 2026 | Earthwise Pet store, Maricopa | Not valued | Cat food and cat litter / in-kind | Donated cat food and cat litter. |
 
-**Total: 47 contributions with a recorded value of $6,275.23 from 25 donors**
+**Total: 52 support entries from 29 contributors, with a recorded value of $6,365.23 plus three unvalued in-kind contributions**

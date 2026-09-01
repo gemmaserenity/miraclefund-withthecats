@@ -3,7 +3,7 @@ const campaign = window.MIRACLE_FUND_CAMPAIGN;
 if (!campaign) throw new Error("Miracle Fund campaign data did not load.");
 
 const supporters = [
-  { name: "Lisa", gifts: [["2026-04-15", 25], ["2026-04-15", 25]] },
+  { name: "Lisa", gifts: [["2026-04-15", 25], ["2026-04-15", 25], ["2026-08-30", 40]] },
   { name: "Ben", gifts: [["2026-04-24", 200], ["2026-06-07", 50]] },
   { name: "Regina", gifts: [["2026-05-04", 250], ["2026-06-06", 200], ["2026-06-20", 50], ["2026-08-03", 50], ["2026-08-14", 50]] },
   { name: "Brian", gifts: [["2026-05-05", 250]] },
@@ -27,7 +27,14 @@ const supporters = [
   { name: "Marialuz", gifts: [["2026-08-11", 200]] },
   { name: "Paul", gifts: [["2026-08-15", 50]] },
   { name: "Jean-Claude", gifts: [["2026-08-17", 100]] },
-  { name: "Eric", gifts: [["2026-08-18", 20]] }
+  { name: "Eric", gifts: [["2026-08-18", 20]] },
+  { name: "Jenny", gifts: [["2026-08-31", 50]] }
+];
+
+const inKindSupport = [
+  { name: "Victor", date: null, label: "Car trip" },
+  { name: "Shannon", date: "2026-08-31", label: "Cat food" },
+  { name: "Earthwise Pet", date: "2026-09-01", label: "Cat food & cat litter" }
 ];
 
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
@@ -84,13 +91,18 @@ function renderSupporters() {
   const dateFormat = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
   const contributions = supporters
     .flatMap((supporter, supporterOrder) => supporter.gifts.map(([date, amount], giftOrder) => ({
-      name: supporter.name, date, amount, supporterOrder, giftOrder
+      name: supporter.name, date, amount, label: null, supporterOrder, giftOrder
     })))
-    .sort((a, b) => a.date.localeCompare(b.date) || a.supporterOrder - b.supporterOrder || a.giftOrder - b.giftOrder);
+    .concat(inKindSupport.map((support, index) => ({ ...support, amount: null, supporterOrder: supporters.length + index, giftOrder: 0 })))
+    .sort((a, b) => (a.date || "9999-12-31").localeCompare(b.date || "9999-12-31") || a.supporterOrder - b.supporterOrder || a.giftOrder - b.giftOrder);
   const cards = contributions.map(contribution => {
+    const giftLabel = contribution.amount === null ? contribution.label : money.format(contribution.amount);
+    const dateLabel = contribution.date
+      ? `<time datetime="${contribution.date}">${dateFormat.format(new Date(`${contribution.date}T00:00:00Z`))}</time>`
+      : `<time>Date not specified</time>`;
     return `<article class="supporter-card">
       <span class="supporter-initials">${contribution.name}</span>
-      <div class="supporter-gift"><strong>${money.format(contribution.amount)}</strong><time datetime="${contribution.date}">${dateFormat.format(new Date(`${contribution.date}T00:00:00Z`))}</time></div>
+      <div class="supporter-gift"><strong>${giftLabel}</strong>${dateLabel}</div>
     </article>`;
   }).join("");
   track.innerHTML = `<div class="supporter-set">${cards}</div><div class="supporter-set" aria-hidden="true">${cards}</div>`;
