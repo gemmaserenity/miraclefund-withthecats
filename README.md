@@ -18,6 +18,23 @@ The campaign follow form requires an explicit consent checkbox and posts to `/ap
 
 `/api/event` records an allowlisted set of campaign interactions in Cloudflare logs without collecting names or email addresses. Cloudflare Web Analytics can be enabled separately in the Pages dashboard for page-level traffic reporting.
 
+## Stripe donation notifications
+
+`/api/stripe-webhook` verifies Stripe webhook signatures and emails the organizer through Resend after a paid Checkout Session from the Miracle Fund Payment Link. It handles immediate card payments and delayed payment methods, and it does not trust browser redirects.
+
+1. In Stripe, edit the Miracle Fund Payment Link. Under **Options**, enable **Collect customers' names**, enable the individual name, and leave it required.
+2. In Stripe Workbench, create a webhook destination for `https://miraclefund.withthecats.org/api/stripe-webhook` and subscribe to `checkout.session.completed` and `checkout.session.async_payment_succeeded`.
+3. Copy the destination's `whsec_...` signing secret. Do not use a Stripe API secret key here.
+4. In the Cloudflare Pages project, add these encrypted production secrets/variables and redeploy:
+   - `STRIPE_WEBHOOK_SECRET`: the webhook destination's `whsec_...` signing secret.
+   - `STRIPE_DONATION_PAYMENT_LINK_ID`: the `plink_...` ID of the Payment Link used in `campaign-data.js`.
+   - `RESEND_API_KEY`: the existing Resend API key.
+   - `DONATION_NOTIFICATION_EMAIL` (optional): notification recipient; defaults to `donation@withthecats.org`.
+5. Create a Workers KV namespace, bind it to the Pages project as `STRIPE_WEBHOOK_EVENTS`, and make the binding available in Production and Preview. This suppresses repeat emails when Stripe retries the same event. Event markers expire after 30 days.
+6. Send a test event from Stripe, confirm the subject starts with `TEST Stripe donation`, and then complete one small live Payment Link payment. Confirm exactly one live notification arrives with the name, email, amount, and Stripe references.
+
+If Resend rejects an email, the endpoint returns an error so Stripe retries delivery. Never put the webhook secret, Resend key, donor email address, or donor name in browser-side code or committed files.
+
 ## Before publishing
 
 1. Review the campaign story in `index.html` and confirm the public campaign email remains current.
