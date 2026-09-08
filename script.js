@@ -314,7 +314,7 @@ if (followForm) {
   });
 }
 
-const shareText = "The August 31 deadline is almost here. A disabled Arizona man and his wife remain in their home, pursuing every lawful option to protect themselves and their beloved bonded cat family. Please read the verified update, give if you can, or share it with one person who may help.";
+const shareText = "Gemma and Sascha are still in their home with their 27 cats, working to address the mortgage, rebuild reliable income, and keep their family together. Please read their update, give if you can, or share it with someone who may help.";
 const campaignUrl = campaign.campaignUrl;
 
 document.querySelectorAll(".js-share").forEach(button => button.addEventListener("click", async () => {
