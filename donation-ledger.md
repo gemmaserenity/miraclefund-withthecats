@@ -1,13 +1,13 @@
 # Donation Ledger
 
 Source: `WINWIN HELP outreach` personal gift tracker  
-Updated: September 1, 2026
+Updated: September 8, 2026
 
 ## Summary
 
-- Valid support entries: **53**
+- Valid support entries: **55**
 - Unique contributors: **30**
-- Total recorded value: **$6,415.23**
+- Total recorded value: **$6,645.23**
 - The total includes cash, gift cards, goods, transportation, and other in-kind support at their recorded values.
 - Three recent in-kind contributions have no assigned dollar value and are excluded from the recorded-value total.
 - Test transactions are excluded from this ledger and from the campaign total.
@@ -69,5 +69,7 @@ Updated: September 1, 2026
 | August 31, 2026 | Shannon | Not valued | Cat food / in-kind | Donated cat food. |
 | September 1, 2026 | Earthwise Pet store, Maricopa | Not valued | Cat food and cat litter / in-kind | Donated cat food and cat litter. |
 | September 1, 2026 | Brian | $50 | Stripe | First-time cash donation. Surname withheld from publication. |
+| September 8, 2026 | Regina | $130 | Method not specified | Cash support during the campaign. |
+| September 8, 2026 | Jean-Claude (JC) | $100 | Method not specified | Cash support during the campaign. |
 
-**Total: 53 support entries from 30 contributors, with a recorded value of $6,415.23 plus three unvalued in-kind contributions**
+**Total: 55 support entries from 30 contributors, with a recorded value of $6,645.23 plus three unvalued in-kind contributions**

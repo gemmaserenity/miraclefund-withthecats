@@ -1,7 +1,7 @@
 // Miracle Fund campaign facts used by the website and campaign content.
 // Update verified figures here first so every dynamic display stays aligned.
 window.MIRACLE_FUND_CAMPAIGN = Object.freeze({
-  historicalSupport: 6415.23,
+  historicalSupport: 6645.23,
   longTermGoal: 500000,
   stabilizationGoal: 25000,
   donors: 30,
