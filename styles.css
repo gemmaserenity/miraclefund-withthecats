@@ -785,3 +785,65 @@ h3 { color: var(--campaign-orange); font-size: 28px; }
   font-size: 16px;
   line-height: 1.5;
 }
+
+/* Carry the same campaign hierarchy and emphasis into the French edition. */
+.french-update {
+  border: 3px solid var(--campaign-blue);
+  border-top: 14px solid var(--campaign-orange);
+  background: var(--campaign-panel);
+  box-shadow: 12px 12px 0 rgba(51, 87, 184, .14);
+}
+.french-update > h2 {
+  color: var(--campaign-blue);
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: .95;
+  text-transform: uppercase;
+}
+.french-update > h3 {
+  margin-top: 34px;
+  color: var(--campaign-orange);
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: 34px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.french-update > p,
+.french-update li {
+  font-size: 18px;
+  line-height: 1.72;
+}
+.french-funding-card {
+  margin: 28px 0 34px;
+  padding: 26px;
+  border: 3px solid var(--campaign-blue);
+  border-left: 12px solid var(--campaign-orange);
+  background: #edf2ff;
+  box-shadow: 8px 8px 0 rgba(242, 116, 5, .14);
+}
+.french-funding-card > span {
+  display: block;
+  color: var(--campaign-blue);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.french-funding-card > strong {
+  display: block;
+  margin: 8px 0 12px;
+  color: var(--campaign-blue);
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: 54px;
+  line-height: 1;
+}
+.french-funding-card > p {
+  margin-bottom: 20px;
+  color: var(--campaign-charcoal);
+  font-size: 18px;
+  line-height: 1.6;
+}
+@media (max-width: 620px) {
+  .french-update > h2 { font-size: 48px; }
+  .french-funding-card { padding: 21px; border-left-width: 8px; }
+}
