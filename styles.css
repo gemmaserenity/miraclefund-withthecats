@@ -757,3 +757,31 @@ h3 { color: var(--campaign-orange); font-size: 28px; }
   .campaign-follow-form .button { width: 100%; }
   .contact-section { padding-block: 58px; }
 }
+
+/* Keep the primary giving callout comfortably readable at every size. */
+.hero .sidebar-milestone {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  margin: 22px 0 18px;
+  padding: 18px 20px;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.hero .sidebar-milestone span {
+  color: var(--campaign-charcoal);
+  font-size: 16px;
+  font-weight: 700;
+}
+.hero .sidebar-milestone strong {
+  color: var(--campaign-blue);
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: 34px;
+  line-height: 1;
+}
+.hero .sidebar-milestone small {
+  margin-top: 2px;
+  color: var(--campaign-charcoal);
+  font-size: 16px;
+  line-height: 1.5;
+}
