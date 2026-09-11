@@ -26,7 +26,7 @@
     window.location.assign(url.href);
   };
 
-  document.querySelectorAll("[data-language]").forEach(button => {
+  document.querySelectorAll("button[data-language]").forEach(button => {
     const active = button.dataset.language === language;
     button.classList.toggle("is-active", active);
     button.setAttribute("aria-pressed", String(active));
