@@ -232,17 +232,6 @@ document.querySelector("#support-options").addEventListener("click", event => {
   if (button) openSupport(button.dataset.supportType);
 });
 
-document.querySelector("#continue-payment").addEventListener("click", () => {
-  if (!amountInput.value || Number(amountInput.value) < 1) {
-    amountInput.setCustomValidity("Please choose or enter a gift amount.");
-    amountInput.reportValidity();
-    return;
-  }
-  amountInput.setCustomValidity("");
-  trackCampaignEvent("gift_amount_confirmed", { amount: Number(amountInput.value) });
-  document.querySelector("#payment-options a")?.focus();
-});
-
 document.querySelector("#support-form").addEventListener("submit", async event => {
   event.preventDefault();
   const form = event.currentTarget;

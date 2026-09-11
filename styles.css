@@ -339,7 +339,6 @@ footer { padding: 42px 0 100px; border-top: 1px solid var(--line); background: #
 .footer-social a { color: white; font-weight: 700; }
 .site-footer .button { flex: 0 1 310px; white-space: normal; text-align: center; }
 .practical-support-button { margin: 0 44px 28px; }
-#continue-payment { margin-top: 14px; }
 .button:disabled { cursor: wait; opacity: .7; }
 .mobile-donate-bar { grid-template-columns: 1fr 1fr; gap: 10px; }
 
