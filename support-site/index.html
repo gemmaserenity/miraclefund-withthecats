@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact the With the Cats support team. Send a message and optional attachment, or email support@withthecats.org directly.">
+  <meta name="theme-color" content="#3357B8">
+  <meta property="og:title" content="Support | With the Cats">
+  <meta property="og:description" content="Send a message to the With the Cats support team.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://support.withthecats.org/">
+  <link rel="canonical" href="https://support.withthecats.org/">
+  <link rel="icon" href="https://miraclefund.withthecats.org/assets/withthecatsorg-icon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <title>Support | With the Cats</title>
+</head>
+<body>
+  <a class="skip-link" href="#contact-form">Skip to the contact form</a>
+
+  <header class="site-header">
+    <div class="shell nav-wrap">
+      <a class="brand" href="https://withthecats.org" aria-label="With the Cats home">
+        <img src="https://miraclefund.withthecats.org/assets/withthecatsorg-logo.png" alt="" width="40" height="40">
+        <span>With the Cats</span>
+      </a>
+      <a class="button button-outline button-small" href="https://miraclefund.withthecats.org">Visit the Miracle Fund</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">We’re here to help</p>
+          <h1>Contact support</h1>
+          <p class="hero-lede">Questions about a donation, receipt, payment, or anything else? Send us a note and we’ll get back to you personally.</p>
+          <div class="direct-email">
+            <span class="mail-icon" aria-hidden="true">@</span>
+            <div>
+              <span>You can also email us directly</span>
+              <a href="mailto:support@withthecats.org">support@withthecats.org</a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="promise-card" aria-label="What happens next">
+          <p class="card-kicker">After you send</p>
+          <h2>A copy goes to your inbox</h2>
+          <p>Your message is delivered to Gemma, and we email you a confirmation containing the message you sent for easy follow-up.</p>
+          <ul>
+            <li>Replies come from a real person</li>
+            <li>Your attachment is delivered securely by email</li>
+            <li>Your email address is used only to respond</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="contact-section" aria-labelledby="form-title">
+      <div class="shell form-layout">
+        <div class="form-intro">
+          <p class="eyebrow">Send a message</p>
+          <h2 id="form-title">How can we help?</h2>
+          <p>Please include enough detail for us to understand what happened. If it concerns a donation, the date and payment method are helpful, but please do not include card or bank numbers.</p>
+          <p class="privacy-note"><strong>Please protect your privacy.</strong> Never send passwords, full card numbers, bank account numbers, or identity documents.</p>
+        </div>
+
+        <form id="contact-form" class="contact-form" action="/api/contact" method="post" enctype="multipart/form-data" novalidate>
+          <div class="field-row">
+            <label class="form-field">
+              <span>Your name</span>
+              <input type="text" name="name" autocomplete="name" maxlength="120" required>
+            </label>
+            <label class="form-field">
+              <span>Your email</span>
+              <input type="email" name="email" autocomplete="email" maxlength="254" required>
+            </label>
+          </div>
+
+          <label class="form-field">
+            <span>What is this about?</span>
+            <select name="topic" required>
+              <option value="">Choose a topic</option>
+              <option>Donation or payment</option>
+              <option>Receipt or confirmation</option>
+              <option>Technical problem</option>
+              <option>Offer of help</option>
+              <option>Other question</option>
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span>Subject</span>
+            <input type="text" name="subject" maxlength="160" required>
+          </label>
+
+          <label class="form-field">
+            <span>Your message</span>
+            <textarea name="message" rows="8" minlength="10" maxlength="5000" required></textarea>
+            <small><span id="message-count">0</span> / 5,000 characters</small>
+          </label>
+
+          <label class="form-field file-field">
+            <span>Attachment <em>optional</em></span>
+            <input id="attachment" type="file" name="attachment" accept=".pdf,.png,.jpg,.jpeg,.heic,.heif,.txt,.doc,.docx">
+            <small>PDF, image, text, or Word document — up to 5 MB.</small>
+          </label>
+
+          <label class="bot-field" aria-hidden="true">
+            Website
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </label>
+
+          <input id="submission-id" type="hidden" name="submission_id">
+
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+          <button class="button button-primary" type="submit">Send message</button>
+          <p class="receipt-note">We’ll send a copy of your message to the email address above.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-wrap">
+      <a class="brand footer-brand" href="https://withthecats.org">
+        <img src="https://miraclefund.withthecats.org/assets/withthecatsorg-logo.png" alt="" width="40" height="40">
+        <span>With the Cats</span>
+      </a>
+      <p>Questions? <a href="mailto:support@withthecats.org">support@withthecats.org</a></p>
+    </div>
+  </footer>
+</body>
+</html>
